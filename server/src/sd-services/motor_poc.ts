@@ -501,7 +501,7 @@ export class motor_poc {
         method: 'post',
         headers: bh.local.headers,
         followRedirects: true,
-        cookies: undefined,
+        cookies: {},
         authType: undefined,
         body: bh.local.requestBody,
         paytoqs: false,
@@ -1224,7 +1224,7 @@ export class motor_poc {
       } else {
         throw new Error('Cannot find the selected config name');
       }
-      let params = [];
+      let params = undefined;
       params = params ? params : [];
       bh.local.GetResult = await new GenericRDBMSOperations().executeSQL(
         connectionName,
@@ -1331,7 +1331,7 @@ export class motor_poc {
         method: 'post',
         headers: bh.local.caseTokenHeaders,
         followRedirects: true,
-        cookies: undefined,
+        cookies: {},
         authType: undefined,
         body: bh.local.caseTokenBody,
         paytoqs: false,
@@ -1653,9 +1653,9 @@ export class motor_poc {
 
         throw new Error('Claim not found: ' + bh.local.claimId);
       } else {
-        bh.local.claimId = result.claim_id;
+        bh.local.claimId = result[0].claim_id;
 
-        bh.local.claimStatus = result.status;
+        bh.local.claimStatus = result[0].status;
 
         bh.local.responseStatus = 201;
 

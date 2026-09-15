@@ -366,6 +366,7 @@
         "nodeType": "flow",
         "name": "",
         "method": "post",
+        "methodMapping": "",
         "methodMappingObj": {},
         "urlMapping": "bh.local.partGroupUrl",
         "urlMappingObj": {
@@ -373,6 +374,7 @@
             "mapVarValue": "partGroupUrl"
         },
         "ret": "json",
+        "retMapping": "",
         "retMappingObj": {},
         "reqBody": "bh.local.requestBody",
         "reqBodyObj": {
@@ -384,6 +386,8 @@
             "mapVarType": "bh.local",
             "mapVarValue": "partGroupResponse"
         },
+        "headers": [],
+        "headersObj": {},
         "headerMapping": "bh.local.headers",
         "headerMappingObj": {
             "mapVarType": "bh.local",
@@ -391,8 +395,12 @@
         },
         "params": {},
         "paramsObj": [],
+        "paramMapping": "",
         "paramMappingObj": {},
+        "authType": "",
         "useAuthTypeMappingObj": {},
+        "useAuthTypeMap": {},
+        "useAuthType": "",
         "useAuthUsername": "",
         "useAuthUsernameMappingObj": "",
         "useAuthPassword": "",
@@ -408,6 +416,7 @@
         "proxy": "",
         "useProxy": false,
         "usetls": false,
+        "cookies": [],
         "cookiesMapObj": {},
         "cookiesList": {},
         "switchStates": {
@@ -672,6 +681,7 @@
             "send": "bh.local.responseBody"
         },
         "dataModelIsArray": false,
+        "cookies": [],
         "inputs": 1,
         "outputs": 0,
         "erd": "",
@@ -1023,6 +1033,7 @@
             "send": "bh.local.response"
         },
         "dataModelIsArray": false,
+        "cookies": [],
         "inputs": 1,
         "outputs": 0,
         "erd": "",
@@ -1079,6 +1090,7 @@
         "nodeType": "flow",
         "name": "claim sql node",
         "databaseConfig": "sd_H3p2aFTyqGNTPPKY",
+        "queryType": "",
         "resultMap": {
             "type": "bh.local",
             "value": "GetResult"
@@ -1091,6 +1103,7 @@
         "inputs": 1,
         "outputs": 1,
         "params": [],
+        "paramMappingObj": {},
         "dbType": "postgres",
         "functionName": "claimSqlNode",
         "category": "Storage",
@@ -1136,6 +1149,7 @@
         "nodeType": "flow",
         "name": "token",
         "method": "post",
+        "methodMapping": "",
         "methodMappingObj": {},
         "urlMapping": "bh.local.caseTokenUrl",
         "urlMappingObj": {
@@ -1143,6 +1157,7 @@
             "mapVarValue": "caseTokenUrl"
         },
         "ret": "json",
+        "retMapping": "",
         "retMappingObj": {},
         "reqBody": "bh.local.caseTokenBody",
         "reqBodyObj": {
@@ -1154,6 +1169,8 @@
             "mapVarType": "bh.local",
             "mapVarValue": "caseTokenResponse"
         },
+        "headers": [],
+        "headersObj": {},
         "headerMapping": "bh.local.caseTokenHeaders",
         "headerMappingObj": {
             "mapVarType": "bh.local",
@@ -1161,8 +1178,12 @@
         },
         "params": {},
         "paramsObj": [],
+        "paramMapping": "",
         "paramMappingObj": {},
+        "authType": "",
         "useAuthTypeMappingObj": {},
+        "useAuthTypeMap": {},
+        "useAuthType": "",
         "useAuthUsername": "",
         "useAuthUsernameMappingObj": "",
         "useAuthPassword": "",
@@ -1178,6 +1199,7 @@
         "proxy": "",
         "useProxy": false,
         "usetls": false,
+        "cookies": [],
         "cookiesMapObj": {},
         "cookiesList": {},
         "switchStates": {
@@ -1430,6 +1452,7 @@
         "acceptFileUpload": false,
         "useDataModel": false,
         "dataModelIsArray": false,
+        "uploadFileOptions": "",
         "erd": "",
         "erdName": "",
         "entity": "",
@@ -1803,6 +1826,7 @@
         "acceptFileUpload": false,
         "useDataModel": false,
         "dataModelIsArray": false,
+        "uploadFileOptions": "",
         "erd": "",
         "erdName": "",
         "entity": "",
@@ -2234,7 +2258,7 @@
         "viewType": "common",
         "nodeType": "flow",
         "name": "last find",
-        "script": "console.log(\"===== FIND RESULT =====\");\nconsole.log(bh.local.GetResult);\n\nconst result = bh.local.GetResult || [];\n\n\nif (!Array.isArray(result) || result.length === 0) {\n    bh.local.responseStatus = 404;\n\n    bh.local.response = {\n        success: false,\n        message: \"Claim not found\",\n        claimId: bh.local.claimId\n    };\n\n    throw new Error(\"Claim not found: \" + bh.local.claimId);\n}\n else {\n\n    bh.local.claimId =\n        result.claim_id;\n\n    bh.local.claimStatus =\n        result.status;\n\n    bh.local.responseStatus = 201;\n\n    bh.local.response = {\n           success: true,\n        claimId: result[0].claim_id,\n        status: result[0].status,\n        netPayable:result[0].system_net_payable\n    };\n}",
+        "script": "console.log(\"===== FIND RESULT =====\");\nconsole.log(bh.local.GetResult);\n\nconst result = bh.local.GetResult || [];\n\n\nif (!Array.isArray(result) || result.length === 0) {\n    bh.local.responseStatus = 404;\n\n    bh.local.response = {\n        success: false,\n        message: \"Claim not found\",\n        claimId: bh.local.claimId\n    };\n\n    throw new Error(\"Claim not found: \" + bh.local.claimId);\n}\n else {\n\n    bh.local.claimId =\n        result[0].claim_id;\n\n    bh.local.claimStatus =\n        result[0].status;\n\n    bh.local.responseStatus = 201;\n\n    bh.local.response = {\n           success: true,\n        claimId: result[0].claim_id,\n        status: result[0].status,\n        netPayable:result[0].system_net_payable\n    };\n}",
         "functionName": "lastFind",
         "category": "Function",
         "x": 1000,

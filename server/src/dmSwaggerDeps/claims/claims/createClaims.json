@@ -1,0 +1,38 @@
+{
+    "/dm/claims/claims/create": {
+        "post": {
+            "consumes": [],
+            "produces": [],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "claims": {
+                                "$ref": "#/definitions/claims ~ claims",
+                                "required": []
+                            }
+                        },
+                        "required": []
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "schema": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/claims ~ claims"
+                        }
+                    },
+                    "description": ""
+                }
+            },
+            "tags": [
+                "claims"
+            ]
+        }
+    }
+}

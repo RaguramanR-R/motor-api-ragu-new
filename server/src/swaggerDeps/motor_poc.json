@@ -1,0 +1,80 @@
+{
+    "/policy/:policyNo": {
+        "get": {
+            "summary": "",
+            "description": "",
+            "consumes": [],
+            "produces": [],
+            "parameters": [],
+            "responses": {},
+            "tags": [
+                "motor_poc"
+            ]
+        }
+    },
+    "/master-data": {
+        "get": {
+            "summary": "",
+            "description": "",
+            "consumes": [],
+            "produces": [],
+            "parameters": [],
+            "responses": {},
+            "tags": [
+                "motor_poc"
+            ]
+        }
+    },
+    "/policy-validation": {
+        "get": {
+            "summary": "",
+            "description": "",
+            "consumes": [],
+            "produces": [],
+            "parameters": [],
+            "responses": {},
+            "tags": [
+                "motor_poc"
+            ]
+        }
+    },
+    "/createclaim": {
+        "post": {
+            "summary": "",
+            "description": "",
+            "consumes": [],
+            "produces": [],
+            "parameters": [],
+            "responses": {},
+            "tags": [
+                "motor_poc"
+            ]
+        }
+    },
+    "/claim/:id/surveyor-action": {
+        "post": {
+            "summary": "",
+            "description": "",
+            "consumes": [],
+            "produces": [],
+            "parameters": [],
+            "responses": {},
+            "tags": [
+                "motor_poc"
+            ]
+        }
+    },
+    "/claim/:id/manager-action": {
+        "post": {
+            "summary": "",
+            "description": "",
+            "consumes": [],
+            "produces": [],
+            "parameters": [],
+            "responses": {},
+            "tags": [
+                "motor_poc"
+            ]
+        }
+    }
+}

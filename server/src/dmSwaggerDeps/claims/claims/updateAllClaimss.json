@@ -1,0 +1,49 @@
+{
+    "/dm/claims/claims/update-all": {
+        "post": {
+            "consumes": [],
+            "produces": [],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "filter": {
+                                "type": "object",
+                                "properties": {
+                                    "claim_id": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "claim_id"
+                                ]
+                            },
+                            "claims": {
+                                "$ref": "#/definitions/claims ~ claims",
+                                "required": []
+                            }
+                        },
+                        "required": []
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "schema": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/claims ~ claims"
+                        }
+                    },
+                    "description": ""
+                }
+            },
+            "tags": [
+                "claims"
+            ]
+        }
+    }
+}

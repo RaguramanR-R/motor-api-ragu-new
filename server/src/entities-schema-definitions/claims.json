@@ -1,0 +1,9 @@
+{
+    "_DM_vhu3ovopn": {
+        "id": "_DM_vhu3ovopn",
+        "name": "claims",
+        "dbType": "dbModel",
+        "dbConfigId": "sd_H3p2aFTyqGNTPPKY",
+        "dbName": "postgres"
+    }
+}

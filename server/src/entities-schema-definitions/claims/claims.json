@@ -1,0 +1,456 @@
+{
+    "name": "claims",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "",
+    "type": "object",
+    "id": "_EN_r7wcg63pag",
+    "y": 58,
+    "properties": {
+        "claim_id": {
+            "name": "claim_id",
+            "format": "",
+            "type": "string",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_e91x8oa1g8",
+                "nullable": false,
+                "dbType": "text",
+                "primary": true,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {}
+            }
+        },
+        "policy_no": {
+            "name": "policy_no",
+            "format": "",
+            "type": "string",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_nv6bahsbez",
+                "subCategoryType": null,
+                "nullable": false,
+                "dbType": "text",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {}
+            }
+        },
+        "date_of_loss": {
+            "name": "date_of_loss",
+            "format": "date-time",
+            "type": "string",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_kbrhif5c7j",
+                "subCategoryType": "date",
+                "nullable": true,
+                "dbType": "timestamp with time zone",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {
+                    "specialDateColumnType": "none"
+                },
+                "precision": 6
+            }
+        },
+        "intimated_at": {
+            "name": "intimated_at",
+            "format": "date-time",
+            "type": "string",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_0t0x2otv06",
+                "subCategoryType": "date",
+                "nullable": true,
+                "dbType": "timestamp with time zone",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {
+                    "specialDateColumnType": "none"
+                },
+                "precision": 6
+            }
+        },
+        "loss_code": {
+            "name": "loss_code",
+            "format": "",
+            "type": "string",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_qk437lmptm",
+                "subCategoryType": null,
+                "nullable": true,
+                "dbType": "text",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {}
+            }
+        },
+        "part_group_code": {
+            "name": "part_group_code",
+            "format": "",
+            "type": "string",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_m3b8cwt97x",
+                "subCategoryType": null,
+                "nullable": true,
+                "dbType": "text",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {}
+            }
+        },
+        "estimated_parts_cost": {
+            "name": "estimated_parts_cost",
+            "format": "",
+            "type": "number",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_rg4scxoz7p",
+                "subCategoryType": null,
+                "nullable": true,
+                "dbType": "bigint",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {}
+            }
+        },
+        "garage_type": {
+            "name": "garage_type",
+            "format": "",
+            "type": "string",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_u175j08gt2",
+                "subCategoryType": null,
+                "nullable": true,
+                "dbType": "text",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {}
+            }
+        },
+        "fir_filed": {
+            "name": "fir_filed",
+            "format": "",
+            "type": "boolean",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_p2o7shbmh0",
+                "subCategoryType": null,
+                "nullable": true,
+                "dbType": "boolean",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {}
+            }
+        },
+        "valid_licence": {
+            "name": "valid_licence",
+            "format": "",
+            "type": "boolean",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_ibf5o9bbmm",
+                "subCategoryType": null,
+                "nullable": true,
+                "dbType": "boolean",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {}
+            }
+        },
+        "loss_description": {
+            "name": "loss_description",
+            "format": "",
+            "type": "string",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_3jmhdufzcg",
+                "subCategoryType": null,
+                "nullable": true,
+                "dbType": "text",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {}
+            }
+        },
+        "depreciated_parts": {
+            "name": "depreciated_parts",
+            "format": "",
+            "type": "number",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_8fgrwrojxp",
+                "subCategoryType": null,
+                "nullable": true,
+                "dbType": "bigint",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {}
+            }
+        },
+        "labour_cost": {
+            "name": "labour_cost",
+            "format": "",
+            "type": "number",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_2dfw4q9qkz",
+                "subCategoryType": null,
+                "nullable": true,
+                "dbType": "bigint",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {}
+            }
+        },
+        "gross_assessed": {
+            "name": "gross_assessed",
+            "format": "",
+            "type": "number",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_hf5je3t5cq",
+                "subCategoryType": null,
+                "nullable": true,
+                "dbType": "bigint",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {}
+            }
+        },
+        "system_net_payable": {
+            "name": "system_net_payable",
+            "format": "",
+            "type": "number",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_3fl8qtwgrl",
+                "subCategoryType": null,
+                "nullable": true,
+                "dbType": "bigint",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {}
+            }
+        },
+        "surveyor_net_payable": {
+            "name": "surveyor_net_payable",
+            "format": "",
+            "type": "number",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_tyet34uya5",
+                "subCategoryType": null,
+                "nullable": true,
+                "dbType": "bigint",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {}
+            }
+        },
+        "deduction_trace": {
+            "name": "deduction_trace",
+            "format": "",
+            "type": "string",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_367q4eruxg",
+                "subCategoryType": null,
+                "nullable": true,
+                "dbType": "text",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {}
+            }
+        },
+        "surveyor_remarks": {
+            "name": "surveyor_remarks",
+            "format": "",
+            "type": "string",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_953s5wsw7q",
+                "subCategoryType": null,
+                "nullable": true,
+                "dbType": "text",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {}
+            }
+        },
+        "manager_remarks": {
+            "name": "manager_remarks",
+            "format": "",
+            "type": "string",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_b28rjkb44h",
+                "subCategoryType": null,
+                "nullable": true,
+                "dbType": "text",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {}
+            }
+        },
+        "settlement_ref": {
+            "name": "settlement_ref",
+            "format": "",
+            "type": "string",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_nufxjfgo2n",
+                "subCategoryType": null,
+                "nullable": true,
+                "dbType": "text",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {}
+            }
+        },
+        "status": {
+            "name": "status",
+            "format": "",
+            "type": "string",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_xw4t4d5iks",
+                "subCategoryType": null,
+                "nullable": true,
+                "dbType": "text",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {}
+            }
+        },
+        "created_at": {
+            "name": "created_at",
+            "format": "date-time",
+            "type": "string",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_bznydzdzfr",
+                "subCategoryType": "date",
+                "nullable": true,
+                "dbType": "timestamp with time zone",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {
+                    "specialDateColumnType": "none"
+                },
+                "precision": 6
+            }
+        },
+        "updated_at": {
+            "name": "updated_at",
+            "format": "date-time",
+            "type": "string",
+            "description": "",
+            "default": "",
+            "__n__metadata__": {
+                "id": "_Att_uuw64gt4tx",
+                "subCategoryType": "date",
+                "nullable": true,
+                "dbType": "timestamp with time zone",
+                "primary": false,
+                "placeholder": "",
+                "dbColName": "",
+                "constraints": {
+                    "specialDateColumnType": "none"
+                },
+                "precision": 6
+            }
+        }
+    },
+    "required": [
+        "policy_no"
+    ],
+    "value": "",
+    "__attributeExpansion__": true,
+    "__operationExpansion__": false,
+    "x": 279,
+    "__n__metadata__": {
+        "operations": [
+            {
+                "name": "create"
+            },
+            {
+                "name": "create-all"
+            },
+            {
+                "name": "delete-all"
+            },
+            {
+                "name": "delete-by-id"
+            },
+            {
+                "name": "find-all"
+            },
+            {
+                "name": "find-by-id"
+            },
+            {
+                "name": "update-all"
+            },
+            {
+                "name": "update-by-id"
+            }
+        ]
+    },
+    "userList": {
+        "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p": [
+            "sd_m5JapzlHnWChriLx",
+            "sd_hTvpPGwVQfvFjXDD",
+            "sd_hsfWmbrKwWtN8nsH",
+            "sd_RiFs2mX30w4oNmKO",
+            "sd_rokFuSYpU5XvCjeC"
+        ]
+    }
+}

@@ -1,0 +1,37 @@
+//CORE_REFERENCE_IMPORTS
+//CORE_REFERENCE_IMPORT-updateClaimsById-DMOPS_ID_claims___EN_r7wcg63pag__updateClaimsById
+import { updateClaimsById as DMOPS_ID_claims___EN_r7wcg63pag__updateClaimsById } from './dm-services/claims/claims/updateClaimsById';
+//CORE_REFERENCE_IMPORT-updateAllClaimss-DMOPS_ID_claims___EN_r7wcg63pag__updateAllClaimss
+import { updateAllClaimss as DMOPS_ID_claims___EN_r7wcg63pag__updateAllClaimss } from './dm-services/claims/claims/updateAllClaimss';
+//CORE_REFERENCE_IMPORT-findClaimsById-DMOPS_ID_claims___EN_r7wcg63pag__findClaimsById
+import { findClaimsById as DMOPS_ID_claims___EN_r7wcg63pag__findClaimsById } from './dm-services/claims/claims/findClaimsById';
+//CORE_REFERENCE_IMPORT-findAllClaimss-DMOPS_ID_claims___EN_r7wcg63pag__findAllClaimss
+import { findAllClaimss as DMOPS_ID_claims___EN_r7wcg63pag__findAllClaimss } from './dm-services/claims/claims/findAllClaimss';
+//CORE_REFERENCE_IMPORT-deleteClaimsById-DMOPS_ID_claims___EN_r7wcg63pag__deleteClaimsById
+import { deleteClaimsById as DMOPS_ID_claims___EN_r7wcg63pag__deleteClaimsById } from './dm-services/claims/claims/deleteClaimsById';
+//CORE_REFERENCE_IMPORT-deleteAllClaimss-DMOPS_ID_claims___EN_r7wcg63pag__deleteAllClaimss
+import { deleteAllClaimss as DMOPS_ID_claims___EN_r7wcg63pag__deleteAllClaimss } from './dm-services/claims/claims/deleteAllClaimss';
+//CORE_REFERENCE_IMPORT-createAllClaims-DMOPS_ID_claims___EN_r7wcg63pag__createAllClaims
+import { createAllClaims as DMOPS_ID_claims___EN_r7wcg63pag__createAllClaims } from './dm-services/claims/claims/createAllClaims';
+//CORE_REFERENCE_IMPORT-createClaims-DMOPS_ID_claims___EN_r7wcg63pag__createClaims
+import { createClaims as DMOPS_ID_claims___EN_r7wcg63pag__createClaims } from './dm-services/claims/claims/createClaims';
+
+export const DmRoutes = [
+  //CORE_REFERENCE_PUSH_TO_ROUTE_ARRAY
+  //CORE_REFERENCE_PUSH_TO_ROUTE_ARRAY-updateClaimsById-DMOPS_ID_claims___EN_r7wcg63pag__updateClaimsById
+  DMOPS_ID_claims___EN_r7wcg63pag__updateClaimsById,
+  //CORE_REFERENCE_PUSH_TO_ROUTE_ARRAY-updateAllClaimss-DMOPS_ID_claims___EN_r7wcg63pag__updateAllClaimss
+  DMOPS_ID_claims___EN_r7wcg63pag__updateAllClaimss,
+  //CORE_REFERENCE_PUSH_TO_ROUTE_ARRAY-findClaimsById-DMOPS_ID_claims___EN_r7wcg63pag__findClaimsById
+  DMOPS_ID_claims___EN_r7wcg63pag__findClaimsById,
+  //CORE_REFERENCE_PUSH_TO_ROUTE_ARRAY-findAllClaimss-DMOPS_ID_claims___EN_r7wcg63pag__findAllClaimss
+  DMOPS_ID_claims___EN_r7wcg63pag__findAllClaimss,
+  //CORE_REFERENCE_PUSH_TO_ROUTE_ARRAY-deleteClaimsById-DMOPS_ID_claims___EN_r7wcg63pag__deleteClaimsById
+  DMOPS_ID_claims___EN_r7wcg63pag__deleteClaimsById,
+  //CORE_REFERENCE_PUSH_TO_ROUTE_ARRAY-deleteAllClaimss-DMOPS_ID_claims___EN_r7wcg63pag__deleteAllClaimss
+  DMOPS_ID_claims___EN_r7wcg63pag__deleteAllClaimss,
+  //CORE_REFERENCE_PUSH_TO_ROUTE_ARRAY-createAllClaims-DMOPS_ID_claims___EN_r7wcg63pag__createAllClaims
+  DMOPS_ID_claims___EN_r7wcg63pag__createAllClaims,
+  //CORE_REFERENCE_PUSH_TO_ROUTE_ARRAY-createClaims-DMOPS_ID_claims___EN_r7wcg63pag__createClaims
+  DMOPS_ID_claims___EN_r7wcg63pag__createClaims,
+];

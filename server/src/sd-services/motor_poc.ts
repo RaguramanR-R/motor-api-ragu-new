@@ -149,7 +149,7 @@ export class motor_poc {
       )
     );
 
-    this.app['get'](
+    this.app['post'](
       `${this.serviceBasePath}/policy-validation`,
       cookieParser(),
       this.sdService.getMiddlesWaresBySequenceId(

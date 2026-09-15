@@ -813,232 +813,191 @@ export class motor_poc {
       console.log('========================================');
 
       // ============================================================
-      // 1. INITIALIZE DEFAULT RESPONSE
+      // 1. INITIALIZE
       // ============================================================
 
-      var notexists = bh.local.GetResult.length == 0;
+      bh.local.isValid = true;
 
-      if (notexists) {
-        bh.local.statusCode = 404;
+      var results = bh.local.GetResult || [];
 
-        let msg = 'Policy Not Found';
-
-        bh.local.responseBody = {
-          error: msg,
-        };
-
-        throw new Error(msg);
-      }
-
-      // Policy exists
-      var policy = bh.local.GetResult[0];
-
-      // Check policy status
-      if (String(policy.status).toUpperCase() !== 'ACTIVE') {
-        bh.local.statusCode = 404;
-
-        let msg = 'Policy is not ACTIVE';
-
-        bh.local.responseBody = {
-          error: msg,
-        };
-
-        throw new Error(msg);
-      }
-
-      bh.local.statusCode = 200;
-
-      bh.local.responseBody = {
-        isValid: true,
-      };
+      console.log('Policy query result:', results);
 
       // ============================================================
-      // 2. GET INTIMATION WINDOW FROM SETTLEMENT PARAMETERS REEL
+      // 2. CHECK POLICY EXISTS
       // ============================================================
 
-      console.log('bh.local.settlementResponse22', bh.local.settlementResponse);
-      console.log('bh.local.GetResult22', bh.local.GetResult);
-
-      var records =
-        bh.local.settlementResponse?.payload?.records ||
-        bh.local.settlementResponse?.records ||
-        [];
-
-      var intimationWindowDays = null;
-
-      for (var i = 0; i < records.length; i++) {
-        var parameterKey = records[i]['Key'];
-
-        var parameterValue = records[i]['Value'];
-
-        if (String(parameterKey).trim() === 'INTIMATION_WINDOW_DAYS') {
-          intimationWindowDays = Number(parameterValue);
-
-          break;
-        }
-      }
-
-      bh.local.intimationWindowDays = intimationWindowDays;
-
-      console.log('INTIMATION_WINDOW_DAYS:', bh.local.intimationWindowDays);
-
-      // ============================================================
-      // 3. VALIDATE INTIMATION WINDOW PARAMETER
-      // ============================================================
-
-      if (
-        bh.local.intimationWindowDays === null ||
-        isNaN(bh.local.intimationWindowDays)
-      ) {
-        console.log('INTIMATION_WINDOW_DAYS parameter not found');
-
-        bh.local.isValid = false;
-      }
-
-      // ============================================================
-      // 4. CHECK POLICY RESULT
-      // ============================================================
-
-      if (
-        bh.local.isValid &&
-        (!bh.local.GetResult || bh.local.GetResult.length === 0)
-      ) {
+      if (results.length === 0) {
         console.log('Policy Not Found');
 
         bh.local.isValid = false;
-      }
+      } else {
+        // Get policy only once
+        var policy = results[0];
 
-      // ============================================================
-      // 5. GET POLICY
-      // ============================================================
+        console.log('Policy:', policy);
 
-      var policy = null;
+        // ========================================================
+        // 3. CHECK POLICY STATUS
+        // ========================================================
 
-      if (bh.local.isValid) {
-        policy = bh.local.GetResult[0];
-
-        console.log('policy', policy);
-      }
-
-      // ============================================================
-      // 6. CHECK POLICY STATUS
-      // ============================================================
-
-      if (bh.local.isValid && policy) {
         if (String(policy.status).toUpperCase() !== 'ACTIVE') {
           console.log('Policy is not ACTIVE');
 
           bh.local.isValid = false;
         }
-      }
 
-      // ============================================================
-      // 7. READ LOSS DATE
-      // ============================================================
+        // ========================================================
+        // 4. GET INTIMATION WINDOW
+        // ========================================================
 
-      var lossDate = null;
+        console.log('Settlement Response:', bh.local.settlementResponse);
 
-      if (bh.local.isValid) {
-        lossDate = new Date(bh.local.lossDate);
+        var records =
+          bh.local.settlementResponse?.payload?.records ||
+          bh.local.settlementResponse?.records ||
+          [];
 
-        if (isNaN(lossDate.getTime())) {
-          console.log('Invalid Date of Loss');
+        var intimationWindowDays = null;
+
+        for (var i = 0; i < records.length; i++) {
+          var parameterKey = records[i]['Key'];
+
+          var parameterValue = records[i]['Value'];
+
+          if (String(parameterKey).trim() === 'INTIMATION_WINDOW_DAYS') {
+            intimationWindowDays = Number(parameterValue);
+
+            break;
+          }
+        }
+
+        bh.local.intimationWindowDays = intimationWindowDays;
+
+        console.log('INTIMATION_WINDOW_DAYS:', bh.local.intimationWindowDays);
+
+        // ========================================================
+        // 5. VALIDATE INTIMATION PARAMETER
+        // ========================================================
+
+        if (
+          bh.local.intimationWindowDays === null ||
+          isNaN(bh.local.intimationWindowDays)
+        ) {
+          console.log('INTIMATION_WINDOW_DAYS parameter not found');
 
           bh.local.isValid = false;
+        }
+
+        // ========================================================
+        // 6. READ LOSS DATE
+        // ========================================================
+
+        var lossDate = null;
+
+        if (bh.local.isValid) {
+          console.log('Raw loss date:', bh.local.lossDate);
+
+          lossDate = new Date(bh.local.lossDate);
+
+          if (isNaN(lossDate.getTime())) {
+            console.log('Invalid Date of Loss');
+
+            bh.local.isValid = false;
+          }
+        }
+
+        // ========================================================
+        // 7. CREATE TODAY DATE
+        // ========================================================
+
+        var today = new Date();
+
+        today.setHours(0, 0, 0, 0);
+
+        if (lossDate) {
+          lossDate.setHours(0, 0, 0, 0);
+        }
+
+        // ========================================================
+        // 8. LOG DATES
+        // ========================================================
+
+        if (lossDate) {
+          console.log('Today:', today.toISOString().split('T')[0]);
+
+          console.log('Loss Date:', lossDate.toISOString().split('T')[0]);
+        }
+
+        // ========================================================
+        // 9. FUTURE DATE VALIDATION
+        // ========================================================
+
+        if (bh.local.isValid && lossDate) {
+          if (lossDate > today) {
+            console.log('Date of Loss is in the future');
+
+            bh.local.isValid = false;
+          }
+        }
+
+        // ========================================================
+        // 10. POLICY PERIOD VALIDATION
+        // ========================================================
+
+        var policyStart = null;
+        var policyEnd = null;
+
+        if (bh.local.isValid && lossDate) {
+          policyStart = new Date(policy.policy_start_date);
+
+          policyEnd = new Date(policy.policy_end_date);
+
+          policyStart.setHours(0, 0, 0, 0);
+
+          policyEnd.setHours(0, 0, 0, 0);
+
+          console.log('Policy Start:', policyStart.toISOString().split('T')[0]);
+
+          console.log('Policy End:', policyEnd.toISOString().split('T')[0]);
+
+          if (lossDate < policyStart || lossDate > policyEnd) {
+            console.log('Date of Loss is outside policy period');
+
+            bh.local.isValid = false;
+          }
+        }
+
+        // ========================================================
+        // 11. INTIMATION WINDOW VALIDATION
+        // ========================================================
+
+        var differenceDays = null;
+
+        if (bh.local.isValid && lossDate) {
+          var differenceMs = today.getTime() - lossDate.getTime();
+
+          differenceDays = Math.floor(differenceMs / (1000 * 60 * 60 * 24));
+
+          console.log('Days since loss:', differenceDays);
+
+          console.log('Maximum allowed days:', bh.local.intimationWindowDays);
+
+          if (differenceDays > Number(bh.local.intimationWindowDays)) {
+            console.log('Intimation window exceeded');
+
+            bh.local.isValid = false;
+          }
         }
       }
 
       // ============================================================
-      // 8. CREATE TODAY DATE
-      // ============================================================
-
-      var today = new Date();
-
-      today.setHours(0, 0, 0, 0);
-
-      if (lossDate) {
-        lossDate.setHours(0, 0, 0, 0);
-      }
-
-      // ============================================================
-      // 9. LOG DATES
-      // ============================================================
-
-      if (lossDate) {
-        console.log('Today:', today.toISOString().split('T')[0]);
-
-        console.log('Loss Date:', lossDate.toISOString().split('T')[0]);
-      }
-
-      // ============================================================
-      // 10. FUTURE DATE VALIDATION
-      // ============================================================
-
-      if (bh.local.isValid && lossDate) {
-        if (lossDate > today) {
-          console.log('Date of Loss is in the future');
-
-          bh.local.isValid = false;
-        }
-      }
-
-      // ============================================================
-      // 11. POLICY PERIOD VALIDATION
-      // ============================================================
-
-      var policyStart = null;
-      var policyEnd = null;
-
-      if (bh.local.isValid && policy && lossDate) {
-        policyStart = new Date(policy.policy_start_date);
-
-        policyEnd = new Date(policy.policy_end_date);
-
-        policyStart.setHours(0, 0, 0, 0);
-
-        policyEnd.setHours(0, 0, 0, 0);
-
-        console.log('Policy Start:', policyStart.toISOString().split('T')[0]);
-
-        console.log('Policy End:', policyEnd.toISOString().split('T')[0]);
-
-        if (lossDate < policyStart || lossDate > policyEnd) {
-          console.log('Date of Loss is outside policy period');
-
-          bh.local.isValid = false;
-        }
-      }
-
-      // ============================================================
-      // 12. INTIMATION WINDOW VALIDATION
-      // ============================================================
-
-      var differenceDays = null;
-
-      if (bh.local.isValid && lossDate) {
-        var differenceMs = today.getTime() - lossDate.getTime();
-
-        differenceDays = Math.floor(differenceMs / (1000 * 60 * 60 * 24));
-
-        console.log('Days since loss:', differenceDays);
-
-        console.log('Maximum allowed days:', bh.local.intimationWindowDays);
-
-        if (differenceDays > Number(bh.local.intimationWindowDays)) {
-          console.log('Intimation window exceeded');
-
-          bh.local.isValid = false;
-        }
-      }
-
-      // ============================================================
-      // 13. FINAL RESPONSE
+      // 12. FINAL RESPONSE
       // ============================================================
 
       bh.local.statusCode = 200;
 
       bh.local.responseBody = {
-        isValid: bh.local.isValid,
+        isValid: Boolean(bh.local.isValid),
       };
 
       console.log('========================================');

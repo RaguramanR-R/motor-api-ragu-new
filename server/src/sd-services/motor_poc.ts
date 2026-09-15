@@ -654,7 +654,7 @@ export class motor_poc {
       const body = bh.input.body || {};
       bh.local.policyNo = body.policyNo;
       bh.local.lossDate = body.lossDate;
-
+      console.log('bh.input.body', bh.input.body);
       bh.local.GetQuery =
         'SELECT * FROM policies ' +
         "WHERE policy_no = '" +
@@ -662,7 +662,7 @@ export class motor_poc {
         "' " +
         "AND status = 'ACTIVE'";
 
-      console.log('bh.local.GetQuery', bh.local.GetQuery);
+      console.log('bh.local.GetQuery11', bh.local.GetQuery);
       const SETTLEMENT_DATASET_ID = '72b58c39-817f-4204-95dc-4f5eec8fd929';
 
       const SETTLEMENT_MDM_ID = '96418f46-a2f2-46a8-85fa-a579796fc703';
@@ -694,7 +694,7 @@ export class motor_poc {
         SETTLEMENT_MDM_ID,
         SETTLEMENT_ENTITY_ID
       );
-      console.log('bh.local.settlementUrl', bh.local.settlementUrl);
+      console.log('bh.local.settlementUrl11', bh.local.settlementUrl);
       this.tracerService.sendData(spanInst, bh);
       bh = await this.sd_TSyg8UbmWaKGMG95(bh, parentSpanInst);
       //appendnew_next_sd_qWjIUr6tk17rocYW
@@ -730,7 +730,7 @@ export class motor_poc {
       } else {
         throw new Error('Cannot find the selected config name');
       }
-      let params = undefined;
+      let params = [];
       params = params ? params : [];
       bh.local.GetResult = await new GenericRDBMSOperations().executeSQL(
         connectionName,
@@ -760,7 +760,7 @@ export class motor_poc {
         method: 'post',
         headers: bh.local.headers,
         followRedirects: true,
-        cookies: {},
+        cookies: undefined,
         authType: undefined,
         body: bh.local.requestBody,
         paytoqs: false,
@@ -816,7 +816,35 @@ export class motor_poc {
       // 1. INITIALIZE DEFAULT RESPONSE
       // ============================================================
 
-      bh.local.isValid = true;
+      var notexists = bh.local.GetResult.length == 0;
+
+      if (notexists) {
+        bh.local.statusCode = 404;
+
+        let msg = 'Policy Not Found';
+
+        bh.local.responseBody = {
+          error: msg,
+        };
+
+        throw new Error(msg);
+      }
+
+      // Policy exists
+      var policy = bh.local.GetResult[0];
+
+      // Check policy status
+      if (String(policy.status).toUpperCase() !== 'ACTIVE') {
+        bh.local.statusCode = 404;
+
+        let msg = 'Policy is not ACTIVE';
+
+        bh.local.responseBody = {
+          error: msg,
+        };
+
+        throw new Error(msg);
+      }
 
       bh.local.statusCode = 200;
 
@@ -828,7 +856,8 @@ export class motor_poc {
       // 2. GET INTIMATION WINDOW FROM SETTLEMENT PARAMETERS REEL
       // ============================================================
 
-      console.log('bh.local.settlementResponse', bh.local.settlementResponse);
+      console.log('bh.local.settlementResponse22', bh.local.settlementResponse);
+      console.log('bh.local.GetResult22', bh.local.GetResult);
 
       var records =
         bh.local.settlementResponse?.payload?.records ||
@@ -869,8 +898,6 @@ export class motor_poc {
       // ============================================================
       // 4. CHECK POLICY RESULT
       // ============================================================
-
-      console.log('bh.local.GetResult', bh.local.GetResult);
 
       if (
         bh.local.isValid &&

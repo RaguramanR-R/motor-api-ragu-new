@@ -1,0 +1,13 @@
+{
+    "displayName": "Motor-POC-API",
+    "appName": "motor-poc-api",
+    "description": "Motor-POC-API",
+    "lastModified": "2026-09-09T17:10:21.280Z",
+    "imgSourcePath": "",
+    "version": "1.0.0",
+    "appType": "apiOnly",
+    "templateName": "blank",
+    "createDate": "2026-09-09T17:10:19.766Z",
+    "analyticsId": "87d05529-ff8d-f3bf-1193-eb2593e46691",
+    "createdStudioVersion": "9.3.0"
+}

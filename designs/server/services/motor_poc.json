@@ -1,0 +1,2252 @@
+[
+    {
+        "id": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "type": "tab",
+        "createdDate": "2026-09-09T17:49:53.804Z",
+        "label": "motor_poc",
+        "disabled": false,
+        "info": "",
+        "functionSeq": 0,
+        "generateNext": true,
+        "serviceName": "motor_poc",
+        "relativeParentPath": ""
+    },
+    {
+        "id": "sd_bakCx6yrlecHq2xA",
+        "type": "HttpIn",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "start",
+        "name": "",
+        "path": "/policy/:policyNo",
+        "uploadpath": "",
+        "summary": "",
+        "description": "",
+        "method": "get",
+        "sequenceId": "",
+        "consumes": "",
+        "produces": "",
+        "filetype": "path",
+        "acceptFileUpload": false,
+        "useDataModel": false,
+        "dataModelIsArray": false,
+        "uploadFileOptions": "",
+        "erd": "",
+        "erdName": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "responses": [],
+            "params": [],
+            "produces": [],
+            "consumes": []
+        },
+        "inputs": 0,
+        "outputs": 1,
+        "validateRequestUsingSwaggerDocs": false,
+        "category": "HTTP",
+        "x": 160,
+        "y": 100,
+        "wires": [
+            [
+                "sd_FjDor9NpmnxAK2fC"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "uploadpath": {
+                "type": "str",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {},
+        "generateNext": true,
+        "serviceName": "motor_poc",
+        "functionName": "sd_bakCx6yrlecHq2xA"
+    },
+    {
+        "id": "sd_ly9rmzytmsNRb1pt",
+        "type": "HttpOut",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "bh.local",
+            "value": "responseBody",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "bh.local",
+            "value": "statusCode",
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "swaggerResponse": {},
+        "responseMapping": {
+            "status": "bh.local.statusCode",
+            "obj": "bh.local.responseBody",
+            "send": "bh.local.responseBody"
+        },
+        "dataModelIsArray": false,
+        "cookies": [],
+        "inputs": 1,
+        "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "headers": [],
+            "produces": [],
+            "responses": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "functionName": "sd_ly9rmzytmsNRb1pt",
+        "category": "HTTP",
+        "x": 605,
+        "y": 100,
+        "wires": [],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_YZ6Ro4ASXv9Is469",
+        "type": "ExecuteSql",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "Getquery",
+        "databaseConfig": "sd_H3p2aFTyqGNTPPKY",
+        "queryType": "",
+        "resultMap": {
+            "type": "bh.local",
+            "value": "GetResult"
+        },
+        "multipleQuery": "",
+        "singleQuery": {
+            "type": "bh.local",
+            "value": "GetQuery"
+        },
+        "inputs": 1,
+        "outputs": 1,
+        "params": [],
+        "paramMappingObj": {},
+        "dbType": "postgres",
+        "functionName": "getquery",
+        "category": "Storage",
+        "x": 345,
+        "y": 100,
+        "wires": [
+            [
+                "sd_IrTOoIrGCyVl8qRO"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_FjDor9NpmnxAK2fC",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "var policyNo = bh.input.params.policyNo;\n\nconsole.log(\"policyNo:\", policyNo);\n\nbh.local.GetQuery =\n    \"SELECT * FROM policies WHERE policy_no = '\" + policyNo + \"'\";",
+        "functionName": "sd_FjDor9NpmnxAK2fC",
+        "category": "Function",
+        "x": 260,
+        "y": 100,
+        "wires": [
+            [
+                "sd_YZ6Ro4ASXv9Is469"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_IrTOoIrGCyVl8qRO",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "error script",
+        "script": "var notexists = bh.local.GetResult.length == 0;\n\nif (notexists) {\n\n    bh.local.statusCode = 404;\n\n    let msg = \"Policy Not Found\";\n\n    bh.local.responseBody = {\n        error: msg\n    };\n\n    throw new Error(msg);\n}\n\n\n// Policy exists\nvar policy = bh.local.GetResult[0];\n\n\n// Check policy status\nif (String(policy.status).toUpperCase() !== \"ACTIVE\") {\n\n    bh.local.statusCode = 404;\n\n    let msg = \"Policy is not ACTIVE\";\n\n    bh.local.responseBody = {\n        error: msg\n    };\n\n    throw new Error(msg);\n}\n\n\n// Policy found and ACTIVE\nbh.local.statusCode = 200;\n\nbh.local.responseBody = policy;",
+        "functionName": "errorScript",
+        "category": "Function",
+        "x": 465,
+        "y": 100,
+        "wires": [
+            [
+                "sd_ly9rmzytmsNRb1pt"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_k3h5vidrloXWe07q",
+        "type": "Catch",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "start",
+        "name": "",
+        "selectedNodes": [
+            "sd_IrTOoIrGCyVl8qRO"
+        ],
+        "selectCatchType": "selectednodes",
+        "masternodeList": "",
+        "ignoreList": "",
+        "functionName": "sd_k3h5vidrloXWe07q",
+        "category": "General",
+        "x": 745,
+        "y": 100,
+        "wires": [
+            [
+                "sd_SarsATYFesBZkLQ6"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": true,
+        "serviceName": "motor_poc"
+    },
+    {
+        "id": "sd_SarsATYFesBZkLQ6",
+        "type": "HttpOut",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "bh.local",
+            "value": "responseBody",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "bh.local",
+            "value": "statusCode",
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "swaggerResponse": {},
+        "responseMapping": {
+            "status": "bh.local.statusCode",
+            "obj": "bh.local.responseBody",
+            "send": "bh.local.responseBody"
+        },
+        "dataModelIsArray": false,
+        "cookies": [],
+        "inputs": 1,
+        "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "headers": [],
+            "produces": [],
+            "responses": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "functionName": "sd_SarsATYFesBZkLQ6",
+        "category": "HTTP",
+        "x": 860,
+        "y": 100,
+        "wires": [],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_rGWwCe5qoHvHsTss",
+        "type": "HttpIn",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "start",
+        "name": "",
+        "path": "/master-data",
+        "uploadpath": "",
+        "summary": "",
+        "description": "",
+        "method": "get",
+        "sequenceId": "",
+        "consumes": "",
+        "produces": "",
+        "filetype": "path",
+        "acceptFileUpload": false,
+        "useDataModel": false,
+        "dataModelIsArray": false,
+        "uploadFileOptions": "",
+        "erd": "",
+        "erdName": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "responses": [],
+            "params": [],
+            "produces": [],
+            "consumes": []
+        },
+        "inputs": 0,
+        "outputs": 1,
+        "validateRequestUsingSwaggerDocs": false,
+        "category": "HTTP",
+        "x": 145,
+        "y": 240,
+        "wires": [
+            [
+                "sd_uE4GcJ4ef7fJllB9"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "uploadpath": {
+                "type": "str",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {},
+        "generateNext": true,
+        "serviceName": "motor_poc",
+        "functionName": "sd_rGWwCe5qoHvHsTss"
+    },
+    {
+        "id": "sd_uE4GcJ4ef7fJllB9",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "const BASE_URL =\n    bh.system.environment.REELS_BASE_URL;\n\nconst TOKEN =\n    bh.system.environment.REELS_TOKEN;\n\nconst PART_GROUP_DATASET_ID =\n    \"72b58c39-817f-4204-95dc-4f5eec8fd929\";\n\nconst PART_GROUP_MDM_ID =\n    \"284f6b9e-8f83-4359-af14-3a3d51e9755e\";\n\nconst PART_GROUP_ENTITY_ID =\n    \"5e37b7ae-e8d3-4e16-a404-ed577e40161a\";\n\nconst LOSS_TYPE_DATASET_ID =\n    \"72b58c39-817f-4204-95dc-4f5eec8fd929\";\n\nconst LOSS_TYPE_MDM_ID =\n    \"5caf278d-1c55-492e-a1c3-c7686fe07a99\";\n\nconst LOSS_TYPE_ENTITY_ID =\n    \"97128efa-bdfe-4b79-941c-c8a980b381c4\";\n\n\nconst buildUrl = (datasetId, mdmId, entityId) =>\n    `${BASE_URL}/integration/api/records/filter/${datasetId}/${mdmId}/${entityId}`;\n\n\nbh.local.headers = {\n    token: TOKEN,\n    \"Content-Type\": \"application/json\"\n};\n\n\nbh.local.requestBody = {\n    pageNumber: 0,\n    pageSize: 100,\n    filter: {},\n    multiplicity: \"multiple\",\n    totalCount: true\n};\n\n\nbh.local.partGroupUrl =\n    buildUrl(\n        PART_GROUP_DATASET_ID,\n        PART_GROUP_MDM_ID,\n        PART_GROUP_ENTITY_ID\n    );\n\n\nbh.local.lossTypeUrl =\n    buildUrl(\n        LOSS_TYPE_DATASET_ID,\n        LOSS_TYPE_MDM_ID,\n        LOSS_TYPE_ENTITY_ID\n    );\n\n\nconsole.log(\"Motor OD master-data URLs prepared\");\n\nconsole.log(\n    \"partGroup:\",\n    bh.local.partGroupUrl\n);\n\nconsole.log(\n    \"lossType:\",\n    bh.local.lossTypeUrl\n);",
+        "functionName": "sd_uE4GcJ4ef7fJllB9",
+        "category": "Function",
+        "x": 260,
+        "y": 240,
+        "wires": [
+            [
+                "sd_lLE8kBgwYDa1uvgn"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_lLE8kBgwYDa1uvgn",
+        "type": "ServerHttpRequest",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "method": "post",
+        "methodMappingObj": {},
+        "urlMapping": "bh.local.partGroupUrl",
+        "urlMappingObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "partGroupUrl"
+        },
+        "ret": "json",
+        "retMappingObj": {},
+        "reqBody": "bh.local.requestBody",
+        "reqBodyObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "requestBody"
+        },
+        "resultMapping": "bh.local.partGroupResponse",
+        "resultMappingObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "partGroupResponse"
+        },
+        "headerMapping": "bh.local.headers",
+        "headerMappingObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "headers"
+        },
+        "params": {},
+        "paramsObj": [],
+        "paramMappingObj": {},
+        "useAuthTypeMappingObj": {},
+        "useAuthUsername": "",
+        "useAuthUsernameMappingObj": "",
+        "useAuthPassword": "",
+        "useAuthPasswordMappingObj": "",
+        "useAuthToken": "",
+        "useAuthTokenMappingObj": "",
+        "useQueryString": false,
+        "tls": "",
+        "followRedirect": true,
+        "paytoqs": false,
+        "useAuthentication": false,
+        "rejectUnauthorized": false,
+        "proxy": "",
+        "useProxy": false,
+        "usetls": false,
+        "cookiesMapObj": {},
+        "cookiesList": {},
+        "switchStates": {
+            "cookies": "Map"
+        },
+        "editableListData": {},
+        "timeout": {
+            "type": "num",
+            "value": ""
+        },
+        "functionName": "sd_lLE8kBgwYDa1uvgn",
+        "category": "HTTP",
+        "x": 365,
+        "y": 240,
+        "wires": [
+            [
+                "sd_PNFivCpEu61d3S6Y"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_znRSDpMBY1V7ibQT",
+        "type": "HttpOut",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "bh.local",
+            "value": "masterDataResponse",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "num",
+            "value": 200,
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "swaggerResponse": {},
+        "responseMapping": {
+            "status": 200,
+            "obj": "bh.local.masterDataResponse",
+            "send": "bh.local.masterDataResponse"
+        },
+        "dataModelIsArray": false,
+        "cookies": [],
+        "inputs": 1,
+        "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "headers": [],
+            "produces": [],
+            "responses": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "functionName": "sd_znRSDpMBY1V7ibQT",
+        "category": "HTTP",
+        "x": 645,
+        "y": 240,
+        "wires": [],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_PNFivCpEu61d3S6Y",
+        "type": "ServerHttpRequest",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "method": "post",
+        "methodMapping": "",
+        "methodMappingObj": {},
+        "urlMapping": "bh.local.lossTypeUrl",
+        "urlMappingObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "lossTypeUrl"
+        },
+        "ret": "json",
+        "retMapping": "",
+        "retMappingObj": {},
+        "reqBody": "bh.local.requestBody",
+        "reqBodyObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "requestBody"
+        },
+        "resultMapping": "bh.local.lossTypeResponse",
+        "resultMappingObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "lossTypeResponse"
+        },
+        "headers": [],
+        "headersObj": {},
+        "headerMapping": "bh.local.headers",
+        "headerMappingObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "headers"
+        },
+        "params": {},
+        "paramsObj": [],
+        "paramMapping": "",
+        "paramMappingObj": {},
+        "authType": "",
+        "useAuthTypeMappingObj": {},
+        "useAuthTypeMap": {},
+        "useAuthType": "",
+        "useAuthUsername": "",
+        "useAuthUsernameMappingObj": "",
+        "useAuthPassword": "",
+        "useAuthPasswordMappingObj": "",
+        "useAuthToken": "",
+        "useAuthTokenMappingObj": "",
+        "useQueryString": false,
+        "tls": "",
+        "followRedirect": true,
+        "paytoqs": false,
+        "useAuthentication": false,
+        "rejectUnauthorized": false,
+        "proxy": "",
+        "useProxy": false,
+        "usetls": false,
+        "cookies": [],
+        "cookiesMapObj": {},
+        "cookiesList": {},
+        "switchStates": {
+            "cookies": "Map"
+        },
+        "editableListData": {},
+        "timeout": {
+            "type": "num",
+            "value": ""
+        },
+        "functionName": "sd_PNFivCpEu61d3S6Y",
+        "category": "HTTP",
+        "x": 465,
+        "y": 240,
+        "wires": [
+            [
+                "sd_NaGgNAtVcKi5afdE"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_NaGgNAtVcKi5afdE",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "const getRecords = (response) =>\n    response?.payload?.records ||\n    response?.records ||\n    [];\n\nbh.local.masterDataResponse = {\n\n    partGroups:\n        getRecords(bh.local.partGroupResponse),\n\n    lossTypes:\n        getRecords(bh.local.lossTypeResponse)\n\n};\n\nconsole.log(\n    \"Motor OD Master Data Response:\",\n    JSON.stringify(\n        bh.local.masterDataResponse,\n        null,\n        2\n    )\n);\n\nbh.input.masterDataResponse =\n    bh.local.masterDataResponse;",
+        "functionName": "sd_NaGgNAtVcKi5afdE",
+        "category": "Function",
+        "x": 560,
+        "y": 240,
+        "wires": [
+            [
+                "sd_znRSDpMBY1V7ibQT"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_4PGOkusOyCUFGH2G",
+        "type": "HttpIn",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "start",
+        "name": "",
+        "path": "/policy-validation",
+        "uploadpath": "",
+        "summary": "",
+        "description": "",
+        "method": "get",
+        "sequenceId": "",
+        "consumes": "",
+        "produces": "",
+        "filetype": "path",
+        "acceptFileUpload": false,
+        "useDataModel": false,
+        "dataModelIsArray": false,
+        "uploadFileOptions": "",
+        "erd": "",
+        "erdName": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "responses": [],
+            "params": [],
+            "produces": [],
+            "consumes": []
+        },
+        "inputs": 0,
+        "outputs": 1,
+        "validateRequestUsingSwaggerDocs": false,
+        "category": "HTTP",
+        "x": 180,
+        "y": 360,
+        "wires": [
+            [
+                "sd_qWjIUr6tk17rocYW"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "uploadpath": {
+                "type": "str",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {},
+        "generateNext": true,
+        "serviceName": "motor_poc",
+        "functionName": "sd_4PGOkusOyCUFGH2G"
+    },
+    {
+        "id": "sd_sFqT8q939sEif28e",
+        "type": "HttpOut",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "bh.local",
+            "value": "responseBody",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "bh.local",
+            "value": "statusCode",
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "swaggerResponse": {},
+        "responseMapping": {
+            "status": "bh.local.statusCode",
+            "obj": "bh.local.responseBody",
+            "send": "bh.local.responseBody"
+        },
+        "dataModelIsArray": false,
+        "inputs": 1,
+        "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "headers": [],
+            "produces": [],
+            "responses": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "functionName": "sd_sFqT8q939sEif28e",
+        "category": "HTTP",
+        "x": 765,
+        "y": 360,
+        "wires": [],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_qWjIUr6tk17rocYW",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "const body = bh.input.body || {};\nbh.local.policyNo=body.policyNo;\nbh.local.lossDate=body.lossDate;\n\nbh.local.GetQuery =\n    \"SELECT * FROM policies \" +\n    \"WHERE policy_no = '\" +\n    bh.local.policyNo +\n    \"' \" +\n    \"AND status = 'ACTIVE'\";\n\nconsole.log(\"bh.local.GetQuery\",bh.local.GetQuery)\nconst SETTLEMENT_DATASET_ID =\n    \"72b58c39-817f-4204-95dc-4f5eec8fd929\";\n\nconst SETTLEMENT_MDM_ID =\n    \"96418f46-a2f2-46a8-85fa-a579796fc703\";\n\nconst SETTLEMENT_ENTITY_ID =\n    \"7da6f6a6-00db-456e-966d-a3a96adb8eca\";\n    \n\nconst BASE_URL =\n    bh.system.environment.REELS_BASE_URL;\n\nconst TOKEN =\n    bh.system.environment.REELS_TOKEN;\n\n    const buildUrl = (datasetId, mdmId, entityId) =>\n    `${BASE_URL}/integration/api/records/filter/${datasetId}/${mdmId}/${entityId}`;\n\n\nbh.local.headers = {\n    token: TOKEN,\n    \"Content-Type\": \"application/json\"\n};\n\n\nbh.local.requestBody = {\n    pageNumber: 0,\n    pageSize: 100,\n    filter: {},\n    multiplicity: \"multiple\",\n    totalCount: true\n};\n\n\nbh.local.settlementUrl =\n    buildUrl(\n        SETTLEMENT_DATASET_ID,\n        SETTLEMENT_MDM_ID,\n        SETTLEMENT_ENTITY_ID\n    );\nconsole.log(\"bh.local.settlementUrl\",bh.local.settlementUrl)",
+        "functionName": "sd_qWjIUr6tk17rocYW",
+        "category": "Function",
+        "x": 340,
+        "y": 360,
+        "wires": [
+            [
+                "sd_TSyg8UbmWaKGMG95"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_jxjH1KPpTRaWoHEx",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "bpm error",
+        "script": "console.log(\"========================================\");\nconsole.log(\"START POLICY & COVER VALIDATION\");\nconsole.log(\"========================================\");\n\n\n// ============================================================\n// 1. INITIALIZE DEFAULT RESPONSE\n// ============================================================\n\nbh.local.isValid = true;\n\nbh.local.statusCode = 200;\n\nbh.local.responseBody = {\n    isValid: true\n};\n\n\n// ============================================================\n// 2. GET INTIMATION WINDOW FROM SETTLEMENT PARAMETERS REEL\n// ============================================================\n\nconsole.log(\n    \"bh.local.settlementResponse\",\n    bh.local.settlementResponse\n);\n\nvar records =\n    bh.local.settlementResponse?.payload?.records ||\n    bh.local.settlementResponse?.records ||\n    [];\n\nvar intimationWindowDays = null;\n\nfor (var i = 0; i < records.length; i++) {\n\n    var parameterKey =\n        records[i][\"Key\"];\n\n    var parameterValue =\n        records[i][\"Value\"];\n\n    if (\n        String(parameterKey).trim() ===\n        \"INTIMATION_WINDOW_DAYS\"\n    ) {\n\n        intimationWindowDays =\n            Number(parameterValue);\n\n        break;\n    }\n}\n\nbh.local.intimationWindowDays =\n    intimationWindowDays;\n\nconsole.log(\n    \"INTIMATION_WINDOW_DAYS:\",\n    bh.local.intimationWindowDays\n);\n\n\n// ============================================================\n// 3. VALIDATE INTIMATION WINDOW PARAMETER\n// ============================================================\n\nif (\n    bh.local.intimationWindowDays === null ||\n    isNaN(bh.local.intimationWindowDays)\n) {\n\n    console.log(\n        \"INTIMATION_WINDOW_DAYS parameter not found\"\n    );\n\n    bh.local.isValid = false;\n}\n\n\n// ============================================================\n// 4. CHECK POLICY RESULT\n// ============================================================\n\nconsole.log(\n    \"bh.local.GetResult\",\n    bh.local.GetResult\n);\n\nif (\n    bh.local.isValid &&\n    (\n        !bh.local.GetResult ||\n        bh.local.GetResult.length === 0\n    )\n) {\n\n    console.log(\n        \"Policy Not Found\"\n    );\n\n    bh.local.isValid = false;\n}\n\n\n// ============================================================\n// 5. GET POLICY\n// ============================================================\n\nvar policy = null;\n\nif (\n    bh.local.isValid\n) {\n\n    policy =\n        bh.local.GetResult[0];\n\n    console.log(\n        \"policy\",\n        policy\n    );\n}\n\n\n// ============================================================\n// 6. CHECK POLICY STATUS\n// ============================================================\n\nif (\n    bh.local.isValid &&\n    policy\n) {\n\n    if (\n        String(policy.status).toUpperCase() !==\n        \"ACTIVE\"\n    ) {\n\n        console.log(\n            \"Policy is not ACTIVE\"\n        );\n\n        bh.local.isValid = false;\n    }\n}\n\n\n// ============================================================\n// 7. READ LOSS DATE\n// ============================================================\n\nvar lossDate = null;\n\nif (\n    bh.local.isValid\n) {\n\n    lossDate =\n        new Date(bh.local.lossDate);\n\n    if (\n        isNaN(lossDate.getTime())\n    ) {\n\n        console.log(\n            \"Invalid Date of Loss\"\n        );\n\n        bh.local.isValid = false;\n    }\n}\n\n\n// ============================================================\n// 8. CREATE TODAY DATE\n// ============================================================\n\nvar today =\n    new Date();\n\ntoday.setHours(\n    0,\n    0,\n    0,\n    0\n);\n\nif (\n    lossDate\n) {\n\n    lossDate.setHours(\n        0,\n        0,\n        0,\n        0\n    );\n}\n\n\n// ============================================================\n// 9. LOG DATES\n// ============================================================\n\nif (\n    lossDate\n) {\n\n    console.log(\n        \"Today:\",\n        today.toISOString().split(\"T\")[0]\n    );\n\n    console.log(\n        \"Loss Date:\",\n        lossDate.toISOString().split(\"T\")[0]\n    );\n}\n\n\n// ============================================================\n// 10. FUTURE DATE VALIDATION\n// ============================================================\n\nif (\n    bh.local.isValid &&\n    lossDate\n) {\n\n    if (\n        lossDate > today\n    ) {\n\n        console.log(\n            \"Date of Loss is in the future\"\n        );\n\n        bh.local.isValid = false;\n    }\n}\n\n\n// ============================================================\n// 11. POLICY PERIOD VALIDATION\n// ============================================================\n\nvar policyStart = null;\nvar policyEnd = null;\n\nif (\n    bh.local.isValid &&\n    policy &&\n    lossDate\n) {\n\n    policyStart =\n        new Date(\n            policy.policy_start_date\n        );\n\n    policyEnd =\n        new Date(\n            policy.policy_end_date\n        );\n\n    policyStart.setHours(\n        0,\n        0,\n        0,\n        0\n    );\n\n    policyEnd.setHours(\n        0,\n        0,\n        0,\n        0\n    );\n\n    console.log(\n        \"Policy Start:\",\n        policyStart.toISOString().split(\"T\")[0]\n    );\n\n    console.log(\n        \"Policy End:\",\n        policyEnd.toISOString().split(\"T\")[0]\n    );\n\n\n    if (\n        lossDate < policyStart ||\n        lossDate > policyEnd\n    ) {\n\n        console.log(\n            \"Date of Loss is outside policy period\"\n        );\n\n        bh.local.isValid = false;\n    }\n}\n\n\n// ============================================================\n// 12. INTIMATION WINDOW VALIDATION\n// ============================================================\n\nvar differenceDays = null;\n\nif (\n    bh.local.isValid &&\n    lossDate\n) {\n\n    var differenceMs =\n        today.getTime() -\n        lossDate.getTime();\n\n    differenceDays =\n        Math.floor(\n            differenceMs /\n            (1000 * 60 * 60 * 24)\n        );\n\n    console.log(\n        \"Days since loss:\",\n        differenceDays\n    );\n\n    console.log(\n        \"Maximum allowed days:\",\n        bh.local.intimationWindowDays\n    );\n\n\n    if (\n        differenceDays >\n        Number(\n            bh.local.intimationWindowDays\n        )\n    ) {\n\n        console.log(\n            \"Intimation window exceeded\"\n        );\n\n        bh.local.isValid = false;\n    }\n}\n\n\n// ============================================================\n// 13. FINAL RESPONSE\n// ============================================================\n\nbh.local.statusCode = 200;\n\nbh.local.responseBody = {\n    isValid: bh.local.isValid\n};\n\n\nconsole.log(\n    \"========================================\"\n);\n\nconsole.log(\n    \"FINAL VALIDATION RESULT:\",\n    bh.local.isValid\n);\n\nconsole.log(\n    \"FINAL RESPONSE BODY:\",\n    bh.local.responseBody\n);\n\nconsole.log(\n    \"FINAL STATUS CODE:\",\n    bh.local.statusCode\n);\n\nconsole.log(\n    \"========================================\"\n);",
+        "functionName": "bpmError",
+        "category": "Function",
+        "x": 645,
+        "y": 360,
+        "wires": [
+            [
+                "sd_sFqT8q939sEif28e"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_TSyg8UbmWaKGMG95",
+        "type": "ExecuteSql",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "databaseConfig": "sd_H3p2aFTyqGNTPPKY",
+        "queryType": "",
+        "resultMap": {
+            "type": "bh.local",
+            "value": "GetResult"
+        },
+        "multipleQuery": "",
+        "singleQuery": {
+            "type": "bh.local",
+            "value": "GetQuery"
+        },
+        "inputs": 1,
+        "outputs": 1,
+        "params": [],
+        "paramMappingObj": {},
+        "dbType": "postgres",
+        "functionName": "sd_TSyg8UbmWaKGMG95",
+        "category": "Storage",
+        "x": 425,
+        "y": 360,
+        "wires": [
+            [
+                "sd_EISDaQwVM8kv6W4s"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_0TOiyi4K9Xq2320V",
+        "type": "Catch",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "start",
+        "name": "",
+        "selectedNodes": [
+            "sd_jxjH1KPpTRaWoHEx"
+        ],
+        "selectCatchType": "selectednodes",
+        "masternodeList": "",
+        "ignoreList": "",
+        "functionName": "sd_0TOiyi4K9Xq2320V",
+        "category": "General",
+        "x": 885,
+        "y": 360,
+        "wires": [
+            [
+                "sd_aHl2wIHJ3tq5It1N"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": true,
+        "serviceName": "motor_poc"
+    },
+    {
+        "id": "sd_aHl2wIHJ3tq5It1N",
+        "type": "HttpOut",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "bh.local",
+            "value": "responseBody",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "bh.local",
+            "value": "statusCode",
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "swaggerResponse": {},
+        "responseMapping": {
+            "status": "bh.local.statusCode",
+            "obj": "bh.local.responseBody",
+            "send": "bh.local.responseBody"
+        },
+        "dataModelIsArray": false,
+        "cookies": [],
+        "inputs": 1,
+        "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "headers": [],
+            "produces": [],
+            "responses": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "functionName": "sd_aHl2wIHJ3tq5It1N",
+        "category": "HTTP",
+        "x": 1025,
+        "y": 360,
+        "wires": [],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_EISDaQwVM8kv6W4s",
+        "type": "ServerHttpRequest",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "method": "post",
+        "methodMapping": "",
+        "methodMappingObj": {},
+        "urlMapping": "bh.local.settlementUrl",
+        "urlMappingObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "settlementUrl"
+        },
+        "ret": "json",
+        "retMapping": "",
+        "retMappingObj": {},
+        "reqBody": "bh.local.requestBody",
+        "reqBodyObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "requestBody"
+        },
+        "resultMapping": "bh.local.settlementResponse",
+        "resultMappingObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "settlementResponse"
+        },
+        "headers": [],
+        "headersObj": {},
+        "headerMapping": "bh.local.headers",
+        "headerMappingObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "headers"
+        },
+        "params": {},
+        "paramsObj": [],
+        "paramMapping": "",
+        "paramMappingObj": {},
+        "authType": "",
+        "useAuthTypeMappingObj": {},
+        "useAuthTypeMap": {},
+        "useAuthType": "",
+        "useAuthUsername": "",
+        "useAuthUsernameMappingObj": "",
+        "useAuthPassword": "",
+        "useAuthPasswordMappingObj": "",
+        "useAuthToken": "",
+        "useAuthTokenMappingObj": "",
+        "useQueryString": false,
+        "tls": "",
+        "followRedirect": true,
+        "paytoqs": false,
+        "useAuthentication": false,
+        "rejectUnauthorized": false,
+        "proxy": "",
+        "useProxy": false,
+        "usetls": false,
+        "cookies": [],
+        "cookiesMapObj": {},
+        "cookiesList": {},
+        "switchStates": {
+            "cookies": "Map"
+        },
+        "editableListData": {},
+        "timeout": {
+            "type": "num",
+            "value": ""
+        },
+        "functionName": "sd_EISDaQwVM8kv6W4s",
+        "category": "HTTP",
+        "x": 540,
+        "y": 360,
+        "wires": [
+            [
+                "sd_jxjH1KPpTRaWoHEx"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_YSXY3A85oZNjqaeI",
+        "type": "HttpIn",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "start",
+        "name": "",
+        "path": "/createclaim",
+        "uploadpath": "",
+        "summary": "",
+        "description": "",
+        "method": "post",
+        "sequenceId": "",
+        "consumes": "",
+        "produces": "",
+        "filetype": "path",
+        "acceptFileUpload": false,
+        "useDataModel": false,
+        "dataModelIsArray": false,
+        "uploadFileOptions": "",
+        "erd": "",
+        "erdName": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "responses": [],
+            "params": [],
+            "produces": [],
+            "consumes": []
+        },
+        "inputs": 0,
+        "outputs": 1,
+        "validateRequestUsingSwaggerDocs": false,
+        "category": "HTTP",
+        "x": 185,
+        "y": 520,
+        "wires": [
+            [
+                "sd_UDwaCKUxiodEyAo7"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "uploadpath": {
+                "type": "str",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {},
+        "generateNext": true,
+        "serviceName": "motor_poc",
+        "functionName": "sd_YSXY3A85oZNjqaeI"
+    },
+    {
+        "id": "sd_pgpdTuEbPYuXCirq",
+        "type": "HttpOut",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "bh.local",
+            "value": "response",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "bh.local",
+            "value": "responseStatus",
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "swaggerResponse": {},
+        "responseMapping": {
+            "status": "bh.local.responseStatus",
+            "obj": "bh.local.response",
+            "send": "bh.local.response"
+        },
+        "dataModelIsArray": false,
+        "inputs": 1,
+        "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "headers": [],
+            "produces": [],
+            "responses": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "functionName": "sd_pgpdTuEbPYuXCirq",
+        "category": "HTTP",
+        "x": 1085,
+        "y": 520,
+        "wires": [],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_UDwaCKUxiodEyAo7",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "const body = bh.input.body || {};\n\n\n/* =========================================================\n   READ FRONTEND VALUES\n   ========================================================= */\n\nbh.local.policyNo =\n    String(body.policyNo || \"\").trim();\n\nbh.local.dateOfLoss =\n    body.dateOfLoss || null;\n\nbh.local.lossCode =\n    String(body.lossType || \"\");\n\nbh.local.partGroupCode =\n    String(body.primaryDamageGroup || \"\");\n\nbh.local.estimatedPartsCost =\n    Number(body.estimatedPartsCost || 0);\n\nbh.local.garageType =\n    String(body.garageType || \"\");\n\nbh.local.firFiled =\n    body.firFiled ?? false;\n\nbh.local.validLicence =\n    body.validDrivingLicence ?? false;\n\nbh.local.lossDescription =\n    String(body.lossDescription || \"\");\n\nbh.local.createdBy =\n    body.createdBy || \"FNOL_USER\";\n\n\n/* =========================================================\n   ESCAPE STRING VALUES\n   ========================================================= */\n\nconst escapeSql =\n    value =>\n        String(value)\n            .replace(/'/g, \"''\");\n\n\n/* =========================================================\n   CLAIM INSERT SQL\n   ========================================================= */\n\nbh.local.claimSql = `\n    INSERT INTO claims (\n        claim_id,\n        policy_no,\n        date_of_loss,\n        intimated_at,\n        loss_code,\n        part_group_code,\n        estimated_parts_cost,\n        garage_type,\n        fir_filed,\n        valid_licence,\n        loss_description,\n        depreciated_parts,\n        labour_cost,\n        gross_assessed,\n        system_net_payable,\n        surveyor_net_payable,\n        deduction_trace,\n        surveyor_remarks,\n        manager_remarks,\n        settlement_ref,\n        status,\n        created_at,\n        updated_at\n    )\n    VALUES (\n\n        'CLM-' ||\n        TO_CHAR(CURRENT_DATE, 'YYYYMMDD') ||\n        '-' ||\n        LPAD(\n            nextval('claim_number_seq')::TEXT,\n            5,\n            '0'\n        ),\n\n        '${escapeSql(bh.local.policyNo)}',\n\n        '${escapeSql(\n            String(bh.local.dateOfLoss).substring(0, 10)\n        )}',\n\n        CURRENT_TIMESTAMP,\n\n        '${escapeSql(bh.local.lossCode)}',\n\n        '${escapeSql(bh.local.partGroupCode)}',\n\n        ${bh.local.estimatedPartsCost},\n\n        '${escapeSql(bh.local.garageType)}',\n\n        ${bh.local.firFiled},\n\n        ${bh.local.validLicence},\n\n        '${escapeSql(bh.local.lossDescription)}',\n\n        NULL,\n        NULL,\n        NULL,\n        NULL,\n        NULL,\n        NULL,\n        NULL,\n        NULL,\n        NULL,\n\n        'REGISTERED',\n\n        CURRENT_TIMESTAMP,\n        CURRENT_TIMESTAMP\n    )\n\n    RETURNING\n        claim_id,\n        policy_no,\n        status,\n        created_at;\n`;\n\n\n/* =========================================================\n   DEBUG\n   ========================================================= */\n\nconsole.log(\n    \"========== CLAIM INSERT SQL ==========\"\n);\n\nconsole.log(\n    bh.local.claimSql\n);\n\nconsole.log(\n    \"=======================================\"\n);",
+        "functionName": "sd_UDwaCKUxiodEyAo7",
+        "category": "Function",
+        "x": 285,
+        "y": 520,
+        "wires": [
+            [
+                "sd_n3uS9CwmTwrT9w9w"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_n3uS9CwmTwrT9w9w",
+        "type": "ExecuteSql",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "claim sql node",
+        "databaseConfig": "sd_H3p2aFTyqGNTPPKY",
+        "resultMap": {
+            "type": "bh.local",
+            "value": "GetResult"
+        },
+        "multipleQuery": "",
+        "singleQuery": {
+            "type": "bh.local",
+            "value": "claimSql"
+        },
+        "inputs": 1,
+        "outputs": 1,
+        "params": [],
+        "dbType": "postgres",
+        "functionName": "claimSqlNode",
+        "category": "Storage",
+        "x": 405,
+        "y": 520,
+        "wires": [
+            [
+                "sd_gP3lR1gQC1PGI8tw"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_gP3lR1gQC1PGI8tw",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "const CLIENT_ID =\n    bh.system.environment.CASE_SERVICE_CLIENT_ID;\n\nconst CLIENT_SECRET =\n    bh.system.environment.CASE_SERVICE_CLIENT_SECRET;\n\nconsole.log(\"========== FINAL RESPONSE ==========\");\n\nconst result =\n    bh.local.GetResult &&\n    bh.local.GetResult.length > 0\n        ? bh.local.GetResult[0]\n        : null;\n\nconsole.log(\n    \"SQL Result:\",\n    JSON.stringify(result, null, 2)\n);\n\nif (!result) {\n\n    bh.local.responseStatus = 500;\n\n    bh.local.response = {\n        success: false,\n        message: \"Claim creation failed\"\n    };\n\n} else {\n\n    bh.local.claimId =\n        result.claim_id;\n\n    bh.local.claimStatus =\n        result.status;\n\n    bh.local.responseStatus = 201;\n\n    bh.local.response = {\n        success: true,\n        claimId: result.claim_id,\n        status: result.status\n    };\n}\n\nconsole.log(\n    \"Response Status:\",\n    bh.local.responseStatus\n);\n\nconsole.log(\n    \"Response Body:\",\n    JSON.stringify(\n        bh.local.response,\n        null,\n        2\n    )\n);\n// =====================================================\n// TOKEN REQUEST\n// =====================================================\n\nbh.local.caseTokenUrl =\n    \"https://ids-ctr-pt.neutrinos-apps.com/token\";\n\nbh.local.caseTokenBody =\n    \"grant_type=client_credentials\" +\n    \"&client_id=\" +\n    encodeURIComponent(CLIENT_ID) +\n    \"&client_secret=\" +\n    encodeURIComponent(CLIENT_SECRET);\n\nbh.local.caseTokenHeaders = {\n    \"Content-Type\":\n        \"application/x-www-form-urlencoded\",\n    \"Accept\":\n        \"application/json\"\n};\n\nconsole.log(\n    \"TOKEN URL:\",\n    bh.local.caseTokenUrl\n);",
+        "functionName": "sd_gP3lR1gQC1PGI8tw",
+        "category": "Function",
+        "x": 520,
+        "y": 520,
+        "wires": [
+            [
+                "sd_RX4D1GcneRpjuRB3"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_RX4D1GcneRpjuRB3",
+        "type": "ServerHttpRequest",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "token",
+        "method": "post",
+        "methodMappingObj": {},
+        "urlMapping": "bh.local.caseTokenUrl",
+        "urlMappingObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "caseTokenUrl"
+        },
+        "ret": "json",
+        "retMappingObj": {},
+        "reqBody": "bh.local.caseTokenBody",
+        "reqBodyObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "caseTokenBody"
+        },
+        "resultMapping": "bh.local.caseTokenResponse",
+        "resultMappingObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "caseTokenResponse"
+        },
+        "headerMapping": "bh.local.caseTokenHeaders",
+        "headerMappingObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "caseTokenHeaders"
+        },
+        "params": {},
+        "paramsObj": [],
+        "paramMappingObj": {},
+        "useAuthTypeMappingObj": {},
+        "useAuthUsername": "",
+        "useAuthUsernameMappingObj": "",
+        "useAuthPassword": "",
+        "useAuthPasswordMappingObj": "",
+        "useAuthToken": "",
+        "useAuthTokenMappingObj": "",
+        "useQueryString": false,
+        "tls": "",
+        "followRedirect": true,
+        "paytoqs": false,
+        "useAuthentication": false,
+        "rejectUnauthorized": false,
+        "proxy": "",
+        "useProxy": false,
+        "usetls": false,
+        "cookiesMapObj": {},
+        "cookiesList": {},
+        "switchStates": {
+            "cookies": "Map"
+        },
+        "editableListData": {},
+        "timeout": {
+            "type": "num",
+            "value": ""
+        },
+        "functionName": "token",
+        "category": "HTTP",
+        "x": 620,
+        "y": 520,
+        "wires": [
+            [
+                "sd_FKSmz2vTb8dw0I37"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_FKSmz2vTb8dw0I37",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "const rawTokenResponse =\n    bh.local.caseTokenResponse || {};\n\nconst tokenResponse =\n    rawTokenResponse &&\n    rawTokenResponse.payload &&\n    typeof rawTokenResponse.payload === \"object\"\n        ? rawTokenResponse.payload\n        : rawTokenResponse;\n\n\nconsole.log(\n    \"========== CASE TOKEN RESPONSE ==========\"\n);\n\nconsole.log(\n    JSON.stringify(\n        tokenResponse,\n        null,\n        2\n    )\n);\n\n\n// =====================================================\n// EXTRACT TOKEN\n// =====================================================\n\nif (\n    !tokenResponse.access_token ||\n    typeof tokenResponse.access_token !== \"string\" ||\n    !tokenResponse.access_token.trim()\n) {\n\n    bh.local.caseTokenSuccess = false;\n\n    bh.local.caseAccessToken = \"\";\n\n    throw new Error(\n        \"Case Service authentication failed: access token missing.\"\n    );\n}\n\n\nbh.local.caseTokenSuccess = true;\n\nbh.local.caseAccessToken =\n    tokenResponse.access_token.trim();\n\n\nconsole.log(\n    \"Case Service authentication successful.\"\n);\n\n\n// =====================================================\n// CASE CREATE URL\n// =====================================================\n\nbh.local.caseCreationUrl =\n    \"https://alpha-pt.neutrinos-apps.com\" +\n    \"/caseservice/case/instance/create?branch=main\";\n\n\n// =====================================================\n// CASE CREATE HEADERS\n// =====================================================\n\nbh.local.caseCreationHeaders = {\n\n    \"Authorization\":\n        \"Bearer \" +\n        bh.local.caseAccessToken,\n\n    \"Content-Type\":\n        \"application/json\",\n\n    \"Accept\":\n        \"application/json\"\n};\n\n\nconsole.log(\n    \"========== CASE CREATION REQUEST ==========\"\n);\n\nconsole.log(\n    \"URL:\",\n    bh.local.caseCreationUrl\n);\n\nconsole.log(\n    \"Token available:\",\n    !!bh.local.caseAccessToken\n);\n\nconsole.log(\n    \"============================================\"\n);\nconst body =\n    bh.local.claimInput ||\n    bh.input.body ||\n    {};\n\n\n// =====================================================\n// CASE REQUEST\n// =====================================================\n\nbh.local.caseCreationRequest = {\n\n    caseType: \"motor_ragu\",\n\n    caseData: {\n\n        claimId:\n            bh.local.claimId,\n\n        policyNumber:\n            String(body.policyNo || \"\"),\n\n        customerName:\n            String(body.customerName || \"\"),\n\n        vehicleRegistration:\n            String(body.vehicleRegistration || \"\"),\n\n        vehicleType:\n            String(body.vehicleType || \"\"),\n\n        yearOfManufacture:\n            String(body.yearOfManufacture || \"\"),\n\n        idv:\n            String(body.idv || \"\"),\n\n        policyStartDate:\n            String(body.policyStartDate || \"\"),\n\n        policyEndDate:\n            String(body.policyEndDate || \"\"),\n\n        policyStatus:\n            String(body.policyStatus || \"\"),\n\n        dateOfLoss:\n            String(body.dateOfLoss || \"\"),\n\n        lossCode:\n            String(body.lossType || \"\"),\n\n        partGroupCode:\n            String(body.primaryDamageGroup || \"\"),\n\n        estimatedPartsCost:\n            String(body.estimatedPartsCost || \"\"),\n\n        garageType:\n            String(body.garageType || \"\"),\n\n        firFiled:\n            body.firFiled ?? false,\n\n        validDrivingLicence:\n            body.validDrivingLicence ?? false,\n\n        lossDescription:\n            String(body.lossDescription || \"\")\n    },\n\n    wfData: {\n\n        claimId:\n            bh.local.claimId,\n\n        policyNumber:\n            String(body.policyNo || \"\"),\n\n        customerName:\n            String(body.customerName || \"\"),\n\n        vehicleRegistration:\n            String(body.vehicleRegistration || \"\"),\n\n        vehicleType:\n            String(body.vehicleType || \"\"),\n\n        yearOfManufacture:\n            String(body.yearOfManufacture || \"\"),\n\n        idv:\n            String(body.idv || \"\"),\n\n        policyStartDate:\n            String(body.policyStartDate || \"\"),\n\n        policyEndDate:\n            String(body.policyEndDate || \"\"),\n\n        policyStatus:\n            String(body.policyStatus || \"\"),\n\n        dateOfLoss:\n            String(body.dateOfLoss || \"\"),\n\n        lossCode:\n            String(body.lossType || \"\"),\n\n        partGroupCode:\n            String(body.primaryDamageGroup || \"\"),\n\n        estimatedPartsCost:\n            String(body.estimatedPartsCost || \"\"),\n\n        garageType:\n            String(body.garageType || \"\"),\n\n        firFiled:\n            body.firFiled ?? false,\n\n        validDrivingLicence:\n            body.validDrivingLicence ?? false,\n\n        lossDescription:\n            String(body.lossDescription || \"\")\n    }\n};\n\n\nconsole.log(\n    \"CASE BODY:\",\n    JSON.stringify(\n        bh.local.caseCreationRequest,\n        null,\n        2\n    )\n);",
+        "functionName": "sd_FKSmz2vTb8dw0I37",
+        "category": "Function",
+        "x": 720,
+        "y": 520,
+        "wires": [
+            [
+                "sd_81GtbVF4FzUEP344"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_81GtbVF4FzUEP344",
+        "type": "ServerHttpRequest",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "casecreate",
+        "method": "post",
+        "methodMapping": "",
+        "methodMappingObj": {},
+        "urlMapping": "bh.local.caseCreationUrl",
+        "urlMappingObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "caseCreationUrl"
+        },
+        "ret": "json",
+        "retMapping": "",
+        "retMappingObj": {},
+        "reqBody": "bh.local.caseCreationRequest",
+        "reqBodyObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "caseCreationRequest"
+        },
+        "resultMapping": "bh.local.caseCreateResponse",
+        "resultMappingObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "caseCreateResponse"
+        },
+        "headers": [],
+        "headersObj": {},
+        "headerMapping": "bh.local.caseCreationHeaders",
+        "headerMappingObj": {
+            "mapVarType": "bh.local",
+            "mapVarValue": "caseCreationHeaders"
+        },
+        "params": {},
+        "paramsObj": [],
+        "paramMapping": "",
+        "paramMappingObj": {},
+        "authType": "",
+        "useAuthTypeMappingObj": {},
+        "useAuthTypeMap": {},
+        "useAuthType": "",
+        "useAuthUsername": "",
+        "useAuthUsernameMappingObj": "",
+        "useAuthPassword": "",
+        "useAuthPasswordMappingObj": "",
+        "useAuthToken": "",
+        "useAuthTokenMappingObj": "",
+        "useQueryString": false,
+        "tls": "",
+        "followRedirect": true,
+        "paytoqs": false,
+        "useAuthentication": false,
+        "rejectUnauthorized": false,
+        "proxy": "",
+        "useProxy": false,
+        "usetls": false,
+        "cookies": [],
+        "cookiesMapObj": {},
+        "cookiesList": {},
+        "switchStates": {
+            "cookies": "Map"
+        },
+        "editableListData": {},
+        "timeout": {
+            "type": "num",
+            "value": ""
+        },
+        "functionName": "casecreate",
+        "category": "HTTP",
+        "x": 825,
+        "y": 520,
+        "wires": [
+            [
+                "sd_rokFuSYpU5XvCjeC"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_3fRt259NdLAx5mRn",
+        "type": "Catch",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "start",
+        "name": "",
+        "selectedNodes": [
+            "sd_n3uS9CwmTwrT9w9w",
+            "sd_RX4D1GcneRpjuRB3",
+            "sd_81GtbVF4FzUEP344",
+            "sd_miyFD6ac8lQVaMcl"
+        ],
+        "selectCatchType": "selectednodes",
+        "masternodeList": "",
+        "ignoreList": "",
+        "functionName": "sd_3fRt259NdLAx5mRn",
+        "category": "General",
+        "x": 1205,
+        "y": 520,
+        "wires": [
+            [
+                "sd_e5wZwhevoQAuVDvv"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": true,
+        "serviceName": "motor_poc"
+    },
+    {
+        "id": "sd_PDto1Vxb6jd2S0jd",
+        "type": "HttpOut",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "bh.local",
+            "value": "response",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "bh.local",
+            "value": "responseStatus",
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "swaggerResponse": {},
+        "responseMapping": {
+            "status": "bh.local.responseStatus",
+            "obj": "bh.local.response",
+            "send": "bh.local.response"
+        },
+        "dataModelIsArray": false,
+        "cookies": [],
+        "inputs": 1,
+        "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "headers": [],
+            "produces": [],
+            "responses": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "functionName": "sd_PDto1Vxb6jd2S0jd",
+        "category": "HTTP",
+        "x": 1365,
+        "y": 520,
+        "wires": [],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_e5wZwhevoQAuVDvv",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "console.log(\n\"========== ERROR HANDLER ==========\"\n);\n\nconsole.log(\n\"Error:\",\nbh.error\n);\n\n// =====================================================\n// DEFAULT\n// =====================================================\n\nlet statusCode = 500;\n\nlet message = \"Internal server error\";\n\n// =====================================================\n// GET ERROR STATUS\n// =====================================================\n\nif (\nbh.error &&\nbh.error.response &&\nbh.error.response.statusCode\n) {\n\nstatusCode =\n    Number(\n        bh.error.response.statusCode\n    );\n\n}\n\n// =====================================================\n// FALLBACK FROM ERROR MESSAGE\n// =====================================================\n\nconst errorMessage =\nString(\nbh.error?.message ||\nbh.error ||\n\"\"\n);\n\n// =====================================================\n// DETECT COMMON HTTP STATUS\n// =====================================================\n\nif (\nerrorMessage.includes(\"Response code 400\")\n) {\n\nstatusCode = 400;\n\n}\n\nelse if (\nerrorMessage.includes(\"Response code 401\")\n) {\n\nstatusCode = 401;\n\n}\n\nelse if (\nerrorMessage.includes(\"Response code 403\")\n) {\n\nstatusCode = 403;\n\n}\n\nelse if (\nerrorMessage.includes(\"Response code 404\")\n) {\n\nstatusCode = 404;\n\n}\n\nelse if (\nerrorMessage.includes(\"Response code 500\")\n) {\n\nstatusCode = 500;\n\n}\n\nelse if (\nerrorMessage.includes(\"Response code 502\")\n) {\n\nstatusCode = 502;\n\n}\n\nelse if (\nerrorMessage.includes(\"Response code 503\")\n) {\n\nstatusCode = 503;\n\n}\n\n// =====================================================\n// ERROR MESSAGE\n// =====================================================\n\nif (statusCode === 400) {\n\nmessage =\n    \"Bad request.\";\n\n}\n\nelse if (statusCode === 401) {\n\nmessage =\n    \"Authentication failed.\";\n\n}\n\nelse if (statusCode === 403) {\n\nmessage =\n    \"Access denied.\";\n\n}\n\nelse if (statusCode === 404) {\n\nmessage =\n    \"Requested service or resource not found.\";\n\n}\n\nelse if (statusCode >= 500) {\n\nmessage =\n    \"Internal server or external service error.\";\n\n}\n\n// =====================================================\n// FINAL ERROR RESPONSE\n// =====================================================\n\nbh.local.responseStatus =\nstatusCode;\n\nbh.local.response = {\n\nsuccess: false,\n\nmessage: message,\n\nstatusCode: statusCode\n\n};\n\nconsole.log(\n\"========== ERROR RESPONSE ==========\"\n);\n\nconsole.log(\nJSON.stringify(\nbh.local.response,\nnull,\n2\n)\n);",
+        "functionName": "sd_e5wZwhevoQAuVDvv",
+        "category": "Function",
+        "x": 1285,
+        "y": 520,
+        "wires": [
+            [
+                "sd_PDto1Vxb6jd2S0jd"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_8pCm6vtZksIhyPEo",
+        "type": "HttpIn",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "start",
+        "name": "",
+        "path": "/claim/:id/surveyor-action",
+        "uploadpath": "",
+        "summary": "",
+        "description": "",
+        "method": "post",
+        "sequenceId": "",
+        "consumes": "",
+        "produces": "",
+        "filetype": "path",
+        "acceptFileUpload": false,
+        "useDataModel": false,
+        "dataModelIsArray": false,
+        "erd": "",
+        "erdName": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "responses": [],
+            "params": [],
+            "produces": [],
+            "consumes": []
+        },
+        "inputs": 0,
+        "outputs": 1,
+        "validateRequestUsingSwaggerDocs": false,
+        "category": "HTTP",
+        "x": 205,
+        "y": 700,
+        "wires": [
+            [
+                "sd_QIxIEgnegbS6YyOM"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "uploadpath": {
+                "type": "str",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {},
+        "generateNext": true,
+        "serviceName": "motor_poc",
+        "functionName": "sd_8pCm6vtZksIhyPEo"
+    },
+    {
+        "id": "sd_jj3j59Cb4VcVIJcw",
+        "type": "HttpOut",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "bh.local",
+            "value": "response",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "bh.local",
+            "value": "responseStatus",
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "swaggerResponse": {},
+        "responseMapping": {
+            "status": "bh.local.responseStatus",
+            "obj": "bh.local.response",
+            "send": "bh.local.response"
+        },
+        "dataModelIsArray": false,
+        "cookies": [],
+        "inputs": 1,
+        "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "headers": [],
+            "produces": [],
+            "responses": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "functionName": "sd_jj3j59Cb4VcVIJcw",
+        "category": "HTTP",
+        "x": 825,
+        "y": 700,
+        "wires": [],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_QIxIEgnegbS6YyOM",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "const body = bh.input.body || {};\n\nconst claimId = String(\n    bh.input.params.id || \"\"\n).trim();\n\nconst action = String(\n    body.action || \"\"\n).trim().toUpperCase();\n\nconst revisedNetPayable =\n    body.revised_net_payable !== undefined &&\n    body.revised_net_payable !== null &&\n    body.revised_net_payable !== \"\"\n        ? Number(body.revised_net_payable)\n        : null;\n\nconst remark = String(\n    body.remark || \"\"\n).trim();\n\nif (!claimId) {\n    throw new Error(\"Claim ID is missing.\");\n}\n\nbh.local.claimId = claimId;\nbh.local.surveyorAction = action;\nbh.local.revisedNetPayable = revisedNetPayable;\nbh.local.surveyorRemark = remark;\n\nconsole.log(\"CLAIM ID FROM URL =>\", bh.local.claimId);",
+        "functionName": "sd_QIxIEgnegbS6YyOM",
+        "category": "Function",
+        "x": 325,
+        "y": 700,
+        "wires": [
+            [
+                "sd_m5JapzlHnWChriLx"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_TbNW3NZNTTM60oPJ",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "findafter",
+        "script": "console.log(\"===== FIND RESULT =====\");\nconsole.log(bh.local.GetResult);\n\nconst result = bh.local.GetResult || [];\n\nif (!Array.isArray(result) || result.length === 0) {\n    bh.local.responseStatus = 404;\n\n    bh.local.response = {\n        success: false,\n        message: \"Claim not found\",\n        claimId: bh.local.claimId\n    };\n\n    throw new Error(\"Claim not found: \" + bh.local.claimId);\n}\n\nconst claim = result[0];\n\nlet surveyorNetPayable = claim.system_net_payable;\n\nif (bh.local.surveyorAction === \"REVISE\") {\n    surveyorNetPayable = bh.local.revisedNetPayable;\n}\n\nif (bh.local.surveyorAction === \"CONFIRM\") {\n    surveyorNetPayable = claim.system_net_payable;\n}\n\nif (bh.local.surveyorAction === \"REPUDIATE\") {\n    surveyorNetPayable = 0;\n}\n\nbh.local.updateObject = {\n    claim_id: bh.local.claimId,\n\n    surveyor_net_payable: surveyorNetPayable,\n\n    surveyor_remarks: bh.local.surveyorRemark,\n\n    status:\n        bh.local.surveyorAction === \"REPUDIATE\"\n            ? \"REPUDIATED\"\n            : \"SURVEYOR_COMPLETED\",\n\n    updated_at: new Date().toISOString()\n};\n\nconsole.log(\"===== UPDATE OBJECT =====\");\nconsole.log(bh.local.updateObject);\n\nconsole.log(\"===== UPDATE OBJECT =====\");\nconsole.log(bh.local.updateObject);",
+        "functionName": "findafter",
+        "category": "Function",
+        "x": 525,
+        "y": 700,
+        "wires": [
+            [
+                "sd_hTvpPGwVQfvFjXDD"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_m5JapzlHnWChriLx",
+        "type": "find",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "erd": "_DM_vhu3ovopn",
+        "entityId": "_EN_r7wcg63pag",
+        "_UI_entityName": "claims",
+        "dbConfigId": "sd_H3p2aFTyqGNTPPKY",
+        "primayKey": "claim_id",
+        "operationType": "findByID",
+        "_ID": "bh.local.claimId",
+        "filterBy": "bh.local.claimId",
+        "offSet": "bh",
+        "orderBy": "bh",
+        "pageSize": "bh",
+        "resultMapping": "bh.local.GetResult",
+        "functionName": "sd_m5JapzlHnWChriLx",
+        "category": "Data Model",
+        "x": 425,
+        "y": 700,
+        "wires": [
+            [
+                "sd_TbNW3NZNTTM60oPJ"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "_ID": {
+                "type": "bh.local",
+                "value": "claimId",
+                "constant": false
+            },
+            "filterBy": {
+                "type": "bh.local",
+                "value": "claimId",
+                "constant": false
+            },
+            "offSet": {
+                "type": "bh",
+                "value": "",
+                "constant": false
+            },
+            "orderBy": {
+                "type": "bh",
+                "value": "",
+                "constant": false
+            },
+            "pageSize": {
+                "type": "bh",
+                "value": "",
+                "constant": false
+            },
+            "resultMapping": {
+                "type": "bh.local",
+                "value": "GetResult",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {
+            "filterBy": true,
+            "offSet": true,
+            "orderBy": true,
+            "pageSize": true
+        },
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_vEzTKoSzWplJFLOv",
+        "type": "Catch",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "start",
+        "name": "",
+        "selectedNodes": [
+            "sd_TbNW3NZNTTM60oPJ"
+        ],
+        "selectCatchType": "selectednodes",
+        "masternodeList": "",
+        "ignoreList": "",
+        "functionName": "sd_vEzTKoSzWplJFLOv",
+        "category": "General",
+        "x": 1005,
+        "y": 700,
+        "wires": [
+            [
+                "sd_2ditQwxIdIu3hjwo"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": true,
+        "serviceName": "motor_poc"
+    },
+    {
+        "id": "sd_2ditQwxIdIu3hjwo",
+        "type": "HttpOut",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "bh.local",
+            "value": "response",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "bh.local",
+            "value": "responseStatus",
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "swaggerResponse": {},
+        "responseMapping": {
+            "status": "bh.local.responseStatus",
+            "obj": "bh.local.response",
+            "send": "bh.local.response"
+        },
+        "dataModelIsArray": false,
+        "cookies": [],
+        "inputs": 1,
+        "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "headers": [],
+            "produces": [],
+            "responses": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "functionName": "sd_2ditQwxIdIu3hjwo",
+        "category": "HTTP",
+        "x": 1090,
+        "y": 700,
+        "wires": [],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_hTvpPGwVQfvFjXDD",
+        "type": "update",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "erd": "_DM_vhu3ovopn",
+        "entityId": "_EN_r7wcg63pag",
+        "_UI_entityName": "claims",
+        "dbConfigId": "sd_H3p2aFTyqGNTPPKY",
+        "operationType": "updateByID",
+        "filterBy": "",
+        "updateObject": "bh.local.updateObject",
+        "resultMapping": "bh.local.UpdateResult",
+        "functionName": "sd_hTvpPGwVQfvFjXDD",
+        "category": "Data Model",
+        "x": 620,
+        "y": 700,
+        "wires": [
+            [
+                "sd_xDgH3WPmbFxHTqvd"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "filterBy": {
+                "type": "bh",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "",
+                "constant": false
+            },
+            "updateObject": {
+                "type": "bh.local",
+                "value": "updateObject",
+                "constant": false
+            },
+            "resultMapping": {
+                "type": "bh.local",
+                "value": "UpdateResult",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {
+            "filterBy": true
+        },
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_xDgH3WPmbFxHTqvd",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "update after",
+        "script": "console.log(\"================================\");\nconsole.log(\"SURVEYOR UPDATE RESPONSE\");\nconsole.log(\"UpdateResult =\", bh.local.UpdateResult);\nconsole.log(\"Claim ID =\", bh.local.claimId);\nconsole.log(\"================================\");\n\nbh.local.responseStatus = 200;\n\nbh.local.response = {\n    success: true,\n    message: \"Surveyor action updated successfully.\",\n    claimId: bh.local.claimId,\n    action: bh.local.surveyorAction,\n    revisedNetPayable: bh.local.revisedNetPayable,\n    remark: bh.local.surveyorRemark,\n    updateResult: bh.local.UpdateResult\n};\n\nconsole.log(\"responseStatus =\", bh.local.responseStatus);\nconsole.log(\"response =\", bh.local.response);",
+        "functionName": "updateAfter",
+        "category": "Function",
+        "x": 705,
+        "y": 700,
+        "wires": [
+            [
+                "sd_jj3j59Cb4VcVIJcw"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_sjZ7nrCLZMRBlsYQ",
+        "type": "HttpIn",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "start",
+        "name": "",
+        "path": "/claim/:id/manager-action",
+        "uploadpath": "",
+        "summary": "",
+        "description": "",
+        "method": "post",
+        "sequenceId": "",
+        "consumes": "",
+        "produces": "",
+        "filetype": "path",
+        "acceptFileUpload": false,
+        "useDataModel": false,
+        "dataModelIsArray": false,
+        "erd": "",
+        "erdName": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "responses": [],
+            "params": [],
+            "produces": [],
+            "consumes": []
+        },
+        "inputs": 0,
+        "outputs": 1,
+        "validateRequestUsingSwaggerDocs": false,
+        "category": "HTTP",
+        "x": 205,
+        "y": 820,
+        "wires": [
+            [
+                "sd_NvZgHBjf3j7ST3Ib"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "uploadpath": {
+                "type": "str",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {},
+        "generateNext": true,
+        "serviceName": "motor_poc",
+        "functionName": "sd_sjZ7nrCLZMRBlsYQ"
+    },
+    {
+        "id": "sd_sIokTcNMwCp5N4CJ",
+        "type": "HttpOut",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "bh.local",
+            "value": "response",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "bh.local",
+            "value": "responseStatus",
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "swaggerResponse": {},
+        "responseMapping": {
+            "status": "bh.local.responseStatus",
+            "obj": "bh.local.response",
+            "send": "bh.local.response"
+        },
+        "dataModelIsArray": false,
+        "cookies": [],
+        "inputs": 1,
+        "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "headers": [],
+            "produces": [],
+            "responses": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "functionName": "sd_sIokTcNMwCp5N4CJ",
+        "category": "HTTP",
+        "x": 825,
+        "y": 820,
+        "wires": [],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_NvZgHBjf3j7ST3Ib",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "",
+        "script": "const body = bh.input.body || {};\n\nconst claimId =\n    String(bh.input.params.id || \"\").trim();\n\nconst action =\n    String(body.action || \"\").trim().toUpperCase();\n\nconst remark =\n    String(body.remark || \"\").trim();\n\nif (!claimId) {\n    throw new Error(\"Claim ID is missing.\");\n}\n\nif (!action) {\n    throw new Error(\"Manager action is required.\");\n}\n\nif (action !== \"APPROVE\" && action !== \"REJECT\") {\n    throw new Error(\n        \"Invalid manager action. Use APPROVE or REJECT.\"\n    );\n}\n\nif (!remark) {\n    throw new Error(\"Manager remark is required.\");\n}\n\nbh.local.claimId = claimId;\nbh.local.managerAction = action;\nbh.local.managerRemark = remark;\n\nconsole.log(\"================================\");\nconsole.log(\"MANAGER ACTION\");\nconsole.log(\"Claim ID =\", bh.local.claimId);\nconsole.log(\"Action =\", bh.local.managerAction);\nconsole.log(\"Remark =\", bh.local.managerRemark);\nconsole.log(\"================================\");",
+        "functionName": "sd_NvZgHBjf3j7ST3Ib",
+        "category": "Function",
+        "x": 325,
+        "y": 820,
+        "wires": [
+            [
+                "sd_hsfWmbrKwWtN8nsH"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_jyqvWNHE9kJTKE9p",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "findafter1",
+        "script": "console.log(\"================================\");\nconsole.log(\"MANAGER - FIND RESULT\");\nconsole.log(\"Claim ID =\", bh.local.claimId);\nconsole.log(\"GetResult =\", bh.local.GetResult);\nconsole.log(\"================================\");\n\nconst result = bh.local.GetResult || [];\n\nif (!Array.isArray(result) || result.length === 0) {\n\n    bh.local.responseStatus = 404;\n\n    bh.local.response = {\n        success: false,\n        message: \"Claim not found.\",\n        claimId: bh.local.claimId\n    };\n\n    throw new Error(\n        \"Claim not found: \" + bh.local.claimId\n    );\n}\n\nconst claim = result[0];\n\nlet newStatus = \"\";\nlet settlementRef = null;\n\nif (bh.local.managerAction === \"APPROVE\") {\n\n    newStatus = \"SETTLED\";\n\n    const year = new Date().getFullYear();\n\n    const randomNumber =\n        Math.floor(100000 + Math.random() * 900000);\n\n    settlementRef =\n        \"STL-\" + year + \"-\" + randomNumber;\n\n} else if (bh.local.managerAction === \"REJECT\") {\n\n    newStatus = \"REPUDIATED\";\n\n    settlementRef = null;\n}\n\nbh.local.updateObject = {\n\n    claim_id: bh.local.claimId,\n\n    manager_remarks:\n        bh.local.managerRemark,\n\n    status:\n        newStatus,\n\n    settlement_ref:\n        settlementRef,\n\n    updated_at:\n        new Date().toISOString()\n};\n\nconsole.log(\"================================\");\nconsole.log(\"MANAGER UPDATE OBJECT\");\nconsole.log(bh.local.updateObject);\nconsole.log(\"================================\");",
+        "functionName": "findafter1",
+        "category": "Function",
+        "x": 525,
+        "y": 820,
+        "wires": [
+            [
+                "sd_RiFs2mX30w4oNmKO"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_hsfWmbrKwWtN8nsH",
+        "type": "find",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "erd": "_DM_vhu3ovopn",
+        "entityId": "_EN_r7wcg63pag",
+        "_UI_entityName": "claims",
+        "dbConfigId": "sd_H3p2aFTyqGNTPPKY",
+        "primayKey": "claim_id",
+        "operationType": "findByID",
+        "_ID": "bh.local.claimId",
+        "filterBy": "bh.local.claimId",
+        "offSet": "bh",
+        "orderBy": "bh",
+        "pageSize": "bh",
+        "resultMapping": "bh.local.GetResult",
+        "functionName": "sd_hsfWmbrKwWtN8nsH",
+        "category": "Data Model",
+        "x": 425,
+        "y": 820,
+        "wires": [
+            [
+                "sd_jyqvWNHE9kJTKE9p"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "_ID": {
+                "type": "bh.local",
+                "value": "claimId",
+                "constant": false
+            },
+            "filterBy": {
+                "type": "bh.local",
+                "value": "claimId",
+                "constant": false
+            },
+            "offSet": {
+                "type": "bh",
+                "value": "",
+                "constant": false
+            },
+            "orderBy": {
+                "type": "bh",
+                "value": "",
+                "constant": false
+            },
+            "pageSize": {
+                "type": "bh",
+                "value": "",
+                "constant": false
+            },
+            "resultMapping": {
+                "type": "bh.local",
+                "value": "GetResult",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {
+            "filterBy": true,
+            "offSet": true,
+            "orderBy": true,
+            "pageSize": true
+        },
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_RiFs2mX30w4oNmKO",
+        "type": "update",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "erd": "_DM_vhu3ovopn",
+        "entityId": "_EN_r7wcg63pag",
+        "_UI_entityName": "claims",
+        "dbConfigId": "sd_H3p2aFTyqGNTPPKY",
+        "operationType": "updateByID",
+        "filterBy": "",
+        "updateObject": "bh.local.updateObject",
+        "resultMapping": "bh.local.UpdateResult",
+        "functionName": "sd_RiFs2mX30w4oNmKO",
+        "category": "Data Model",
+        "x": 620,
+        "y": 820,
+        "wires": [
+            [
+                "sd_6SYorNX3jbCMyGmf"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "filterBy": {
+                "type": "bh",
+                "value": "",
+                "nullable": "true",
+                "nullableValue": "",
+                "constant": false
+            },
+            "updateObject": {
+                "type": "bh.local",
+                "value": "updateObject",
+                "constant": false
+            },
+            "resultMapping": {
+                "type": "bh.local",
+                "value": "UpdateResult",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {
+            "filterBy": true
+        },
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_6SYorNX3jbCMyGmf",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "update after1",
+        "script": "console.log(\"================================\");\nconsole.log(\"MANAGER UPDATE RESULT\");\nconsole.log(\"UpdateResult =\", bh.local.UpdateResult);\nconsole.log(\"================================\");\n\nbh.local.responseStatus = 200;\n\nbh.local.response = {\n\n    success: true,\n\n    message:\n        bh.local.managerAction === \"APPROVE\"\n            ? \"Claim approved and settled successfully.\"\n            : \"Claim rejected and repudiated successfully.\",\n\n    claimId:\n        bh.local.claimId,\n\n    action:\n        bh.local.managerAction,\n\n    status:\n        bh.local.updateObject.status,\n\n    settlementRef:\n        bh.local.updateObject.settlement_ref,\n\n    remark:\n        bh.local.managerRemark,\n\n    updateResult:\n        bh.local.UpdateResult\n};\n\nconsole.log(\"Response Status =\", bh.local.responseStatus);\nconsole.log(\"Response =\", bh.local.response);",
+        "functionName": "updateAfter1",
+        "category": "Function",
+        "x": 705,
+        "y": 820,
+        "wires": [
+            [
+                "sd_sIokTcNMwCp5N4CJ"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_7RojkF7seRhQWEQG",
+        "type": "Catch",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "start",
+        "name": "",
+        "selectedNodes": [
+            "sd_jyqvWNHE9kJTKE9p"
+        ],
+        "selectCatchType": "selectednodes",
+        "masternodeList": "",
+        "ignoreList": "",
+        "functionName": "sd_7RojkF7seRhQWEQG",
+        "category": "General",
+        "x": 1005,
+        "y": 800,
+        "wires": [
+            [
+                "sd_adj03AfIT4G083vt"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": true,
+        "serviceName": "motor_poc"
+    },
+    {
+        "id": "sd_adj03AfIT4G083vt",
+        "type": "HttpOut",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "headers": {},
+        "responseBody": {
+            "type": "bh.local",
+            "value": "response",
+            "ssd_typedInputField": true
+        },
+        "httpcode": {
+            "type": "bh.local",
+            "value": "responseStatus",
+            "ssd_typedInputField": true
+        },
+        "responseType": "obj",
+        "swaggerResponse": {},
+        "responseMapping": {
+            "status": "bh.local.responseStatus",
+            "obj": "bh.local.response",
+            "send": "bh.local.response"
+        },
+        "dataModelIsArray": false,
+        "cookies": [],
+        "inputs": 1,
+        "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
+        "editableListData": {
+            "headers": [],
+            "produces": [],
+            "responses": []
+        },
+        "cookiesList": {},
+        "switchStates": {
+            "headers": "Map",
+            "cookies": "Map"
+        },
+        "functionName": "sd_adj03AfIT4G083vt",
+        "category": "HTTP",
+        "x": 1090,
+        "y": 800,
+        "wires": [],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_rokFuSYpU5XvCjeC",
+        "type": "find",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "server",
+        "nodeType": "flow",
+        "name": "",
+        "erd": "_DM_vhu3ovopn",
+        "entityId": "_EN_r7wcg63pag",
+        "_UI_entityName": "claims",
+        "dbConfigId": "sd_H3p2aFTyqGNTPPKY",
+        "primayKey": "claim_id",
+        "operationType": "findByID",
+        "_ID": "bh.local.claimId",
+        "filterBy": "bh",
+        "offSet": "bh",
+        "orderBy": "bh",
+        "pageSize": "bh",
+        "resultMapping": "bh.local.GetResult",
+        "functionName": "sd_rokFuSYpU5XvCjeC",
+        "category": "Data Model",
+        "x": 920,
+        "y": 520,
+        "wires": [
+            [
+                "sd_miyFD6ac8lQVaMcl"
+            ]
+        ],
+        "__ssdTypeInputs__": {
+            "_ID": {
+                "type": "bh.local",
+                "value": "claimId",
+                "constant": false
+            },
+            "filterBy": {
+                "type": "bh",
+                "value": "",
+                "constant": false
+            },
+            "offSet": {
+                "type": "bh",
+                "value": "",
+                "constant": false
+            },
+            "orderBy": {
+                "type": "bh",
+                "value": "",
+                "constant": false
+            },
+            "pageSize": {
+                "type": "bh",
+                "value": "",
+                "constant": false
+            },
+            "resultMapping": {
+                "type": "bh.local",
+                "value": "GetResult",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {
+            "filterBy": true,
+            "offSet": true,
+            "orderBy": true,
+            "pageSize": true
+        },
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    },
+    {
+        "id": "sd_miyFD6ac8lQVaMcl",
+        "type": "Script",
+        "z": "SSD_SERVICE_ID_sd_mlJ0xjSZMe9QOv8p",
+        "viewType": "common",
+        "nodeType": "flow",
+        "name": "last find",
+        "script": "console.log(\"===== FIND RESULT =====\");\nconsole.log(bh.local.GetResult);\n\nconst result = bh.local.GetResult || [];\n\n\nif (!Array.isArray(result) || result.length === 0) {\n    bh.local.responseStatus = 404;\n\n    bh.local.response = {\n        success: false,\n        message: \"Claim not found\",\n        claimId: bh.local.claimId\n    };\n\n    throw new Error(\"Claim not found: \" + bh.local.claimId);\n}\n else {\n\n    bh.local.claimId =\n        result.claim_id;\n\n    bh.local.claimStatus =\n        result.status;\n\n    bh.local.responseStatus = 201;\n\n    bh.local.response = {\n           success: true,\n        claimId: result[0].claim_id,\n        status: result[0].status,\n        netPayable:result[0].system_net_payable\n    };\n}",
+        "functionName": "lastFind",
+        "category": "Function",
+        "x": 1000,
+        "y": 520,
+        "wires": [
+            [
+                "sd_pgpdTuEbPYuXCirq"
+            ]
+        ],
+        "__n_excludedFromValidation__": {},
+        "generateNext": false,
+        "serviceName": "motor_poc",
+        "generated": true
+    }
+]

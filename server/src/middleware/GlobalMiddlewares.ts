@@ -19,7 +19,7 @@ export let Middlewares = {
         'https://u.neutrinos-apps.com',
       ],
 
-      credentials: false,
+      credentials: true,
 
       preflightContinue: false,
     };

@@ -19,6 +19,6 @@ export default {
     client_secret:
       'f2rrAJeoqJWV3qtnfbq9KuHA1ewxQ9kPq1WJpfgv52BDQZQPOKfoJk3bK3gAIgHg4EVD1CQ978O5mWwR_d2N4A',
     issuerURL: 'https://ids.neutrinos.co',
-    enabled: false,
+    enabled: true,
   },
 };

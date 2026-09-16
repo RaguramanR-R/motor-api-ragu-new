@@ -105,7 +105,7 @@
             ]
         },
         "showOriginToggleButton": false,
-        "credentials": false,
+        "credentials": true,
         "maxAge": "",
         "preflightContinue": false,
         "optionsSuccessStatus": "",
@@ -227,7 +227,6 @@
         "inputs": 1,
         "outputs": 1,
         "category": "Service",
-        "__n_excludedFromValidation__": {},
         "x": 281,
         "y": 102.8125,
         "wires": [
@@ -235,6 +234,7 @@
                 "sd_7EmxxOk703exD5hF"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": true,
         "functionName": "sd_C9VRO0iOLqxUzNzT"
     },
@@ -246,7 +246,6 @@
         "inputs": 1,
         "outputs": 1,
         "category": "Service",
-        "__n_excludedFromValidation__": {},
         "x": 281,
         "y": 212.8125,
         "wires": [
@@ -254,6 +253,7 @@
                 "sd_jK1yTPs7foxJ0sF9"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": true,
         "functionName": "sd_ISirC5Fy6p3Du7i8"
     }

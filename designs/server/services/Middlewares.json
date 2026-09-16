@@ -83,6 +83,12 @@
                     "rowId": "sd_3aQ1Qvo93Bhh2lif",
                     "valid": true,
                     "type": "str"
+                },
+                {
+                    "key": "https://motor-ui.neutrinos-apps.com",
+                    "rowId": "sd_ptcXIDA6vthHztvc",
+                    "valid": true,
+                    "type": "str"
                 }
             ]
         },

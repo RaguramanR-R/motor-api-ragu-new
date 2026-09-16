@@ -89,6 +89,12 @@
                     "rowId": "sd_ptcXIDA6vthHztvc",
                     "valid": true,
                     "type": "str"
+                },
+                {
+                    "key": "https://alpha-pt.neutrinos-apps.com",
+                    "rowId": "sd_RWViDRwMqK16rdbW",
+                    "valid": true,
+                    "type": "str"
                 }
             ]
         },

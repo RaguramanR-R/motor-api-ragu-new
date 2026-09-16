@@ -12,7 +12,11 @@ const __dirname = dirname(__filename);
 export let Middlewares = {
   cors: () => {
     let corsOptions = {
-      origin: ['http://localhost:4200', 'https://motor-ui.neutrinos-apps.com'],
+      origin: [
+        'http://localhost:4200',
+        'https://motor-ui.neutrinos-apps.com',
+        'https://alpha-pt.neutrinos-apps.com',
+      ],
 
       credentials: false,
 

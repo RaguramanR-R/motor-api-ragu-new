@@ -16,6 +16,7 @@ export let Middlewares = {
         'http://localhost:4200',
         'https://motor-ui.neutrinos-apps.com',
         'https://alpha-pt.neutrinos-apps.com',
+        'https://u.neutrinos-apps.com',
       ],
 
       credentials: false,

@@ -95,6 +95,12 @@
                     "rowId": "sd_RWViDRwMqK16rdbW",
                     "valid": true,
                     "type": "str"
+                },
+                {
+                    "key": "https://u.neutrinos-apps.com",
+                    "rowId": "sd_yYxsNysUbB0fQcrB",
+                    "valid": true,
+                    "type": "str"
                 }
             ]
         },

@@ -14,7 +14,7 @@ export let Middlewares = {
     let corsOptions = {
       origin: ['http://localhost:4200', 'https://motor-ui.neutrinos-apps.com'],
 
-      credentials: true,
+      credentials: false,
 
       preflightContinue: false,
     };

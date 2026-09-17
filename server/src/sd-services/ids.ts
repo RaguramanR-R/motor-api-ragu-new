@@ -356,7 +356,7 @@ export class ids {
         state: crypto.randomBytes(16).toString('hex'),
         nonce: crypto.randomBytes(16).toString('hex'),
         isMobile: bh.input.query.isMobile,
-        redirectTo: bh.input.query.redirectTo,
+        redirectTo: bh.input.query.redirectTo|| 'Claim_page',
       };
       this.tracerService.sendData(spanInst, bh);
       bh = await this.sd_drVJTIOsUgQM8IKb(bh, parentSpanInst);

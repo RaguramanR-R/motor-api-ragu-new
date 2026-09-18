@@ -595,6 +595,13 @@ export class ids {
     );
     try {
       let requestObject = bh.web.req;
+console.log("========== IDS CALLBACK DEBUG ==========");
+console.log("URL:", requestObject?.href);
+console.log("Session exists:", !!requestObject?.session);
+console.log("Session ID:", requestObject?.sessionID);
+console.log("Session data exists:", !!requestObject?.session?.data);
+console.log("Session data:", requestObject?.session?.data);
+console.log("========================================");
       if (requestObject.session) {
         bh.input.sessionParams = JSON.parse(
           JSON.stringify(requestObject.session)

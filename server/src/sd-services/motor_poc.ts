@@ -89,7 +89,7 @@ export class motor_poc {
       `${this.serviceBasePath}/policy/:policyNo`,
       cookieParser(),
       this.sdService.getMiddlesWaresBySequenceId(
-        null,
+        'IDSAuthroizedAPIs',
         'pre',
         this.generatedMiddlewares
       ),
@@ -111,7 +111,7 @@ export class motor_poc {
         }
       },
       this.sdService.getMiddlesWaresBySequenceId(
-        null,
+        'IDSAuthroizedAPIs',
         'post',
         this.generatedMiddlewares
       )
@@ -121,7 +121,7 @@ export class motor_poc {
       `${this.serviceBasePath}/master-data`,
       cookieParser(),
       this.sdService.getMiddlesWaresBySequenceId(
-        null,
+        'IDSAuthroizedAPIs',
         'pre',
         this.generatedMiddlewares
       ),
@@ -143,7 +143,7 @@ export class motor_poc {
         }
       },
       this.sdService.getMiddlesWaresBySequenceId(
-        null,
+        'IDSAuthroizedAPIs',
         'post',
         this.generatedMiddlewares
       )
@@ -153,7 +153,7 @@ export class motor_poc {
       `${this.serviceBasePath}/policy-validation`,
       cookieParser(),
       this.sdService.getMiddlesWaresBySequenceId(
-        null,
+        'IDSAuthroizedAPIs',
         'pre',
         this.generatedMiddlewares
       ),
@@ -175,7 +175,7 @@ export class motor_poc {
         }
       },
       this.sdService.getMiddlesWaresBySequenceId(
-        null,
+        'IDSAuthroizedAPIs',
         'post',
         this.generatedMiddlewares
       )
@@ -185,7 +185,7 @@ export class motor_poc {
       `${this.serviceBasePath}/createclaim`,
       cookieParser(),
       this.sdService.getMiddlesWaresBySequenceId(
-        null,
+        'IDSAuthroizedAPIs',
         'pre',
         this.generatedMiddlewares
       ),
@@ -207,7 +207,7 @@ export class motor_poc {
         }
       },
       this.sdService.getMiddlesWaresBySequenceId(
-        null,
+        'IDSAuthroizedAPIs',
         'post',
         this.generatedMiddlewares
       )
@@ -217,7 +217,7 @@ export class motor_poc {
       `${this.serviceBasePath}/claim/:id/surveyor-action`,
       cookieParser(),
       this.sdService.getMiddlesWaresBySequenceId(
-        null,
+        'IDSAuthroizedAPIs',
         'pre',
         this.generatedMiddlewares
       ),
@@ -239,7 +239,7 @@ export class motor_poc {
         }
       },
       this.sdService.getMiddlesWaresBySequenceId(
-        null,
+        'IDSAuthroizedAPIs',
         'post',
         this.generatedMiddlewares
       )
@@ -249,7 +249,7 @@ export class motor_poc {
       `${this.serviceBasePath}/claim/:id/manager-action`,
       cookieParser(),
       this.sdService.getMiddlesWaresBySequenceId(
-        null,
+        'IDSAuthroizedAPIs',
         'pre',
         this.generatedMiddlewares
       ),
@@ -271,7 +271,7 @@ export class motor_poc {
         }
       },
       this.sdService.getMiddlesWaresBySequenceId(
-        null,
+        'IDSAuthroizedAPIs',
         'post',
         this.generatedMiddlewares
       )
@@ -730,7 +730,7 @@ export class motor_poc {
       } else {
         throw new Error('Cannot find the selected config name');
       }
-      let params = [];
+      let params = undefined;
       params = params ? params : [];
       bh.local.GetResult = await new GenericRDBMSOperations().executeSQL(
         connectionName,
@@ -760,7 +760,7 @@ export class motor_poc {
         method: 'post',
         headers: bh.local.headers,
         followRedirects: true,
-        cookies: undefined,
+        cookies: {},
         authType: undefined,
         body: bh.local.requestBody,
         paytoqs: false,

@@ -8,7 +8,6 @@
         "info": "",
         "generateNext": true,
         "serviceName": "ids",
-        "viewType": "server",
         "relativeParentPath": ""
     },
     {
@@ -28,19 +27,14 @@
         "produces": "",
         "filetype": "path",
         "acceptFileUpload": false,
-        "httpOptions": {
-            "/login": {
-                "get": {
-                    "summary": "",
-                    "description": "",
-                    "consumes": [],
-                    "produces": [],
-                    "parameters": [],
-                    "responses": {}
-                }
-            }
-        },
+        "useDataModel": false,
+        "dataModelIsArray": false,
         "uploadFileOptions": {},
+        "erd": "",
+        "erdName": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
         "editableListData": {
             "responses": [],
             "params": [],
@@ -49,6 +43,7 @@
         },
         "inputs": 0,
         "outputs": 1,
+        "validateRequestUsingSwaggerDocs": false,
         "category": "HTTP",
         "x": 92,
         "y": 286.953125,
@@ -57,6 +52,7 @@
                 "sd_ZbHb8tTRn2O5A4KG"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": true,
         "serviceName": "ids",
         "functionName": "sd_ud1miYs55puxOyIA"
@@ -78,9 +74,10 @@
                 "sd_PuYsyG1RjMIIdtJU"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_PuYsyG1RjMIIdtJU",
@@ -95,6 +92,13 @@
         "dataMapping": "bh.local.reqParams",
         "functionName": "sd_PuYsyG1RjMIIdtJU",
         "category": "HTTP",
+        "x": 763,
+        "y": 410,
+        "wires": [
+            [
+                "sd_4wKeyu2a5aFYYgT4"
+            ]
+        ],
         "__ssdTypeInputs__": {
             "resultMapping": {
                 "type": "bh.input",
@@ -105,16 +109,10 @@
                 "value": "reqParams"
             }
         },
-        "x": 763,
-        "y": 410,
-        "wires": [
-            [
-                "sd_4wKeyu2a5aFYYgT4"
-            ]
-        ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_BXW9vENiCSeq8Pj3",
@@ -133,9 +131,10 @@
                 "sd_V08ta2DnQolFbyaU"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_4wKeyu2a5aFYYgT4",
@@ -145,6 +144,7 @@
         "nodeType": "flow",
         "name": "Get IDS client instance",
         "outputs": 1,
+        "isValidNode": true,
         "noerr": 0,
         "service": {
             "serviceId": "sd_demSUkhSSxbMWT5g",
@@ -189,9 +189,10 @@
                 "sd_wNPWvtj0wrNz4JcI"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_V08ta2DnQolFbyaU",
@@ -216,14 +217,20 @@
             "ssd_typedInputField": true
         },
         "responseType": "obj",
+        "swaggerResponse": {},
         "responseMapping": {
             "status": 302,
             "obj": "'redirecting'",
             "send": "'redirecting'"
         },
+        "dataModelIsArray": false,
         "cookies": [],
         "inputs": 1,
         "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
         "editableListData": {
             "headers": []
         },
@@ -237,9 +244,10 @@
         "x": 1343,
         "y": 408,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_uASIZXASdMYgSUCy",
@@ -274,9 +282,10 @@
                 "sd_nx9MFHXvSXgwrtsr"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_ZbHb8tTRn2O5A4KG",
@@ -295,9 +304,10 @@
                 "sd_uASIZXASdMYgSUCy"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_51QHXicZigHStJZg",
@@ -314,20 +324,27 @@
         },
         "httpcode": {
             "type": "num",
-            "value": "404",
+            "value": 404,
             "ssd_typedInputField": true
         },
         "responseType": "obj",
+        "swaggerResponse": {},
         "responseMapping": {
             "status": 404,
             "obj": "bh.local.res.message",
             "send": "bh.local.res.message"
         },
-        "cookies": [],
+        "dataModelIsArray": false,
         "inputs": 1,
         "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
         "editableListData": {
-            "headers": []
+            "headers": [],
+            "produces": [],
+            "responses": []
         },
         "cookiesList": {},
         "switchStates": {
@@ -339,9 +356,10 @@
         "x": 1341,
         "y": 286,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_nx9MFHXvSXgwrtsr",
@@ -360,9 +378,10 @@
                 "sd_51QHXicZigHStJZg"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_6HAZXbHzybzMZW1G",
@@ -381,6 +400,7 @@
                 "sd_IenaOMY8JM081xGT"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": true,
         "serviceName": "ids",
         "functionName": "sd_6HAZXbHzybzMZW1G"
@@ -424,9 +444,10 @@
         "x": 819.890625,
         "y": 692.796875,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_IenaOMY8JM081xGT",
@@ -445,9 +466,10 @@
                 "sd_R17vV02VtgWCD9zH"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_wNPWvtj0wrNz4JcI",
@@ -457,6 +479,7 @@
         "nodeType": "flow",
         "name": "Get Scope and consent values",
         "outputs": 1,
+        "isValidNode": true,
         "noerr": 0,
         "service": {
             "serviceId": "sd_demSUkhSSxbMWT5g",
@@ -500,9 +523,10 @@
                 "sd_BXW9vENiCSeq8Pj3"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_s9zpKlVAAcZDcqx9",
@@ -521,19 +545,14 @@
         "produces": "",
         "filetype": "path",
         "acceptFileUpload": false,
-        "httpOptions": {
-            "/login/cb": {
-                "get": {
-                    "summary": "",
-                    "description": "",
-                    "consumes": [],
-                    "produces": [],
-                    "parameters": [],
-                    "responses": {}
-                }
-            }
-        },
+        "useDataModel": false,
+        "dataModelIsArray": false,
         "uploadFileOptions": {},
+        "erd": "",
+        "erdName": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
         "editableListData": {
             "responses": [],
             "params": [],
@@ -542,6 +561,7 @@
         },
         "inputs": 0,
         "outputs": 1,
+        "validateRequestUsingSwaggerDocs": false,
         "category": "HTTP",
         "x": 88.890625,
         "y": 1038.796875,
@@ -550,6 +570,7 @@
                 "sd_pHve0ZPaAyWTAxdi"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": true,
         "serviceName": "ids",
         "functionName": "sd_s9zpKlVAAcZDcqx9"
@@ -562,12 +583,15 @@
         "nodeType": "flow",
         "name": "Get IDS client instance",
         "outputs": 1,
+        "isValidNode": true,
         "noerr": 0,
         "service": {
-            "serviceId": "sd_demSUkhSSxbMWT5g",
-            "serviceName": "idsutil",
             "id": "sd_demSUkhSSxbMWT5g",
-            "label": "idsutil"
+            "type": "tab",
+            "createdDate": "2019-12-04T13:37:05.418Z",
+            "label": "idsutil",
+            "disabled": false,
+            "info": ""
         },
         "flow": {
             "flowId": "sd_QuI92EFogKTCLlFL",
@@ -581,6 +605,7 @@
                 "value": ""
             }
         ],
+        "bhVariables": [],
         "outputMapping": [
             {
                 "mapVarType": "input",
@@ -596,7 +621,7 @@
         "inputParams": [
             null
         ],
-        "accept_bh": false,
+        "accept_bh": "",
         "functionName": "sd_i2u5MMtHPw4W5BeQ",
         "category": "General",
         "x": 453,
@@ -606,9 +631,10 @@
                 "sd_ctYfKQt9V0tX2Z49"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_ctYfKQt9V0tX2Z49",
@@ -627,9 +653,10 @@
                 "sd_MnJbNlJVltoFRvZB"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_pHve0ZPaAyWTAxdi",
@@ -641,19 +668,9 @@
         "operationType": "get",
         "data": "",
         "resultMapping": "bh.input.sessionParams",
-        "dataMapping": "",
+        "dataMapping": "bh.input",
         "functionName": "sd_pHve0ZPaAyWTAxdi",
         "category": "HTTP",
-        "__ssdTypeInputs__": {
-            "resultMapping": {
-                "type": "bh.input",
-                "value": "sessionParams"
-            },
-            "dataMapping": {
-                "type": "bh.input",
-                "value": ""
-            }
-        },
         "x": 262,
         "y": 1038.796875,
         "wires": [
@@ -661,9 +678,22 @@
                 "sd_i2u5MMtHPw4W5BeQ"
             ]
         ],
+        "__ssdTypeInputs__": {
+            "resultMapping": {
+                "type": "bh.input",
+                "value": "sessionParams",
+                "constant": false
+            },
+            "dataMapping": {
+                "type": "bh.input",
+                "value": "",
+                "constant": false
+            }
+        },
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_xzPaSYgnqi7ia6sw",
@@ -701,9 +731,10 @@
                 "sd_cs2J0o6loHpdIs7G"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_QuHmH8bsswgNqwlG",
@@ -722,9 +753,10 @@
                 "sd_U7PRu5EkZuHz9IzY"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_cs2J0o6loHpdIs7G",
@@ -743,9 +775,10 @@
                 "sd_87ccQDgDF8hedCrF"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_U7PRu5EkZuHz9IzY",
@@ -768,14 +801,20 @@
             "ssd_typedInputField": true
         },
         "responseType": "txt",
+        "swaggerResponse": {},
         "responseMapping": {
             "status": 200,
             "txt": "bh.local.htmlResponse",
             "send": "bh.local.htmlResponse"
         },
+        "dataModelIsArray": false,
         "cookies": [],
         "inputs": 1,
         "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
         "editableListData": {
             "headers": [
                 {
@@ -796,9 +835,10 @@
         "x": 1488.500020980835,
         "y": 1141.781265258789,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_87ccQDgDF8hedCrF",
@@ -823,14 +863,20 @@
             "ssd_typedInputField": true
         },
         "responseType": "txt",
+        "swaggerResponse": {},
         "responseMapping": {
             "status": 302,
             "txt": "'Redirecting'",
             "send": "'Redirecting'"
         },
+        "dataModelIsArray": false,
         "cookies": [],
         "inputs": 1,
         "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
         "editableListData": {
             "headers": []
         },
@@ -844,9 +890,10 @@
         "x": 1483.000020980835,
         "y": 903.2812633514404,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_MnJbNlJVltoFRvZB",
@@ -861,6 +908,13 @@
         "dataMapping": "bh.local.userDetails",
         "functionName": "sd_MnJbNlJVltoFRvZB",
         "category": "HTTP",
+        "x": 792,
+        "y": 1036.78125,
+        "wires": [
+            [
+                "sd_xzPaSYgnqi7ia6sw"
+            ]
+        ],
         "__ssdTypeInputs__": {
             "resultMapping": {
                 "type": "bh.input",
@@ -871,16 +925,10 @@
                 "value": "userDetails"
             }
         },
-        "x": 792,
-        "y": 1036.78125,
-        "wires": [
-            [
-                "sd_xzPaSYgnqi7ia6sw"
-            ]
-        ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_AgDun0lLKhIeAuT5",
@@ -899,19 +947,14 @@
         "produces": "",
         "filetype": "path",
         "acceptFileUpload": false,
-        "httpOptions": {
-            "/user/info": {
-                "get": {
-                    "summary": "",
-                    "description": "",
-                    "consumes": [],
-                    "produces": [],
-                    "parameters": [],
-                    "responses": {}
-                }
-            }
-        },
+        "useDataModel": false,
+        "dataModelIsArray": false,
         "uploadFileOptions": {},
+        "erd": "",
+        "erdName": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
         "editableListData": {
             "responses": [],
             "params": [],
@@ -920,6 +963,7 @@
         },
         "inputs": 0,
         "outputs": 1,
+        "validateRequestUsingSwaggerDocs": false,
         "category": "HTTP",
         "x": 455.8125057220459,
         "y": 2060.734405517578,
@@ -928,6 +972,7 @@
                 "sd_YCvgdW3zg9IL20vT"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": true,
         "serviceName": "ids",
         "functionName": "sd_AgDun0lLKhIeAuT5"
@@ -945,6 +990,13 @@
         "dataMapping": "",
         "functionName": "sd_YCvgdW3zg9IL20vT",
         "category": "HTTP",
+        "x": 653.0000057220459,
+        "y": 2060.781280517578,
+        "wires": [
+            [
+                "sd_szJV91NolHH7zFo7"
+            ]
+        ],
         "__ssdTypeInputs__": {
             "resultMapping": {
                 "type": "bh.local",
@@ -955,16 +1007,10 @@
                 "value": ""
             }
         },
-        "x": 653.0000057220459,
-        "y": 2060.781280517578,
-        "wires": [
-            [
-                "sd_szJV91NolHH7zFo7"
-            ]
-        ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_szJV91NolHH7zFo7",
@@ -985,14 +1031,20 @@
             "ssd_typedInputField": true
         },
         "responseType": "obj",
+        "swaggerResponse": {},
         "responseMapping": {
             "status": 200,
             "obj": "bh.local.session.data.userInfo",
             "send": "bh.local.session.data.userInfo"
         },
+        "dataModelIsArray": false,
         "cookies": [],
         "inputs": 1,
         "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
         "editableListData": {
             "headers": []
         },
@@ -1006,9 +1058,10 @@
         "x": 819.0000057220459,
         "y": 2060.781280517578,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_8awFPJ2ZWlmh64LJ",
@@ -1041,6 +1094,7 @@
                 "sd_ds145PtBSaivotLT"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": true,
         "serviceName": "ids"
     },
@@ -1059,9 +1113,10 @@
         "wires": [
             []
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_abrijJUUPL0xYVml",
@@ -1080,19 +1135,14 @@
         "produces": "",
         "filetype": "path",
         "acceptFileUpload": false,
-        "httpOptions": {
-            "/logout": {
-                "get": {
-                    "summary": "",
-                    "description": "",
-                    "consumes": [],
-                    "produces": [],
-                    "parameters": [],
-                    "responses": {}
-                }
-            }
-        },
+        "useDataModel": false,
+        "dataModelIsArray": false,
         "uploadFileOptions": {},
+        "erd": "",
+        "erdName": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
         "editableListData": {
             "responses": [],
             "params": [],
@@ -1101,6 +1151,7 @@
         },
         "inputs": 0,
         "outputs": 1,
+        "validateRequestUsingSwaggerDocs": false,
         "category": "HTTP",
         "x": 79.890625,
         "y": 1679.796875,
@@ -1109,6 +1160,7 @@
                 "sd_vftrBt2JOj0N6r9d"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": true,
         "serviceName": "ids",
         "functionName": "sd_abrijJUUPL0xYVml"
@@ -1126,6 +1178,13 @@
         "dataMapping": "",
         "functionName": "sd_vftrBt2JOj0N6r9d",
         "category": "HTTP",
+        "x": 249,
+        "y": 1679.78125,
+        "wires": [
+            [
+                "sd_KpLscpUZspuop0ZP"
+            ]
+        ],
         "__ssdTypeInputs__": {
             "resultMapping": {
                 "type": "bh.local",
@@ -1136,16 +1195,10 @@
                 "value": ""
             }
         },
-        "x": 249,
-        "y": 1679.78125,
-        "wires": [
-            [
-                "sd_KpLscpUZspuop0ZP"
-            ]
-        ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_KpLscpUZspuop0ZP",
@@ -1164,9 +1217,10 @@
                 "sd_CsKNs9VaFR1Ew8YF"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_4OZIbgIeVomGoPIP",
@@ -1201,9 +1255,10 @@
                 "sd_2EW6UQMzbCN7uxNM"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_p8zapdGgha1xcUbF",
@@ -1222,9 +1277,10 @@
                 "sd_dCWCI7Lqpk6tk1KJ"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_CsKNs9VaFR1Ew8YF",
@@ -1234,6 +1290,7 @@
         "nodeType": "flow",
         "name": "Get IDS client instance",
         "outputs": 1,
+        "isValidNode": true,
         "noerr": 0,
         "service": {
             "serviceId": "sd_demSUkhSSxbMWT5g",
@@ -1278,9 +1335,10 @@
                 "sd_4OZIbgIeVomGoPIP"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_RwsNCMI8tNTehS2g",
@@ -1301,14 +1359,20 @@
             "ssd_typedInputField": true
         },
         "responseType": "obj",
+        "swaggerResponse": {},
         "responseMapping": {
             "status": 200,
             "obj": "bh.local.res",
             "send": "bh.local.res"
         },
+        "dataModelIsArray": false,
         "cookies": [],
         "inputs": 1,
         "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
         "editableListData": {
             "headers": []
         },
@@ -1322,9 +1386,10 @@
         "x": 1345,
         "y": 1680,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_2EW6UQMzbCN7uxNM",
@@ -1343,9 +1408,10 @@
                 "sd_RwsNCMI8tNTehS2g"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_DXFCwCK1svMVmpvd",
@@ -1364,19 +1430,14 @@
         "produces": "",
         "filetype": "path",
         "acceptFileUpload": false,
-        "httpOptions": {
-            "/logout/cb": {
-                "get": {
-                    "summary": "",
-                    "description": "",
-                    "consumes": [],
-                    "produces": [],
-                    "parameters": [],
-                    "responses": {}
-                }
-            }
-        },
+        "useDataModel": false,
+        "dataModelIsArray": false,
         "uploadFileOptions": {},
+        "erd": "",
+        "erdName": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
         "editableListData": {
             "responses": [],
             "params": [],
@@ -1385,6 +1446,7 @@
         },
         "inputs": 0,
         "outputs": 1,
+        "validateRequestUsingSwaggerDocs": false,
         "category": "HTTP",
         "x": 200,
         "y": 2500,
@@ -1393,6 +1455,7 @@
                 "sd_uWxKoLkvabl3ne8h"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": true,
         "serviceName": "ids",
         "functionName": "sd_DXFCwCK1svMVmpvd"
@@ -1414,9 +1477,10 @@
                 "sd_0zUoSQRn1UXTiXfS"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_0zUoSQRn1UXTiXfS",
@@ -1451,9 +1515,10 @@
                 "sd_DXp561k3Ycg6r0wG"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_DLBEbnRIsqGXQzEv",
@@ -1472,9 +1537,10 @@
                 "sd_ep69yXa6MPeCFwEf"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_ep69yXa6MPeCFwEf",
@@ -1495,14 +1561,20 @@
             "ssd_typedInputField": true
         },
         "responseType": "obj",
+        "swaggerResponse": {},
         "responseMapping": {
             "status": 200,
             "obj": "{ message: \"destroyed\" }",
             "send": "{ message: \"destroyed\" }"
         },
+        "dataModelIsArray": false,
         "cookies": [],
         "inputs": 1,
         "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
         "editableListData": {
             "headers": [],
             "produces": [],
@@ -1518,9 +1590,10 @@
         "x": 580,
         "y": 2350,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_DXp561k3Ycg6r0wG",
@@ -1535,6 +1608,13 @@
         "dataMapping": "",
         "functionName": "sd_DXp561k3Ycg6r0wG",
         "category": "HTTP",
+        "x": 500,
+        "y": 2500,
+        "wires": [
+            [
+                "sd_tqfCMfY5oWPUUKg7"
+            ]
+        ],
         "__ssdTypeInputs__": {
             "resultMapping": {
                 "type": "bh.local",
@@ -1545,16 +1625,10 @@
                 "value": ""
             }
         },
-        "x": 500,
-        "y": 2500,
-        "wires": [
-            [
-                "sd_tqfCMfY5oWPUUKg7"
-            ]
-        ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_LvH7gNWY3HlmCmTF",
@@ -1592,9 +1666,10 @@
                 "sd_8XIwcdGdNq6b1MiS"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_Ln70bOokfwILTrT4",
@@ -1613,9 +1688,10 @@
                 "sd_AvEnper9LioLocwl"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_AvEnper9LioLocwl",
@@ -1638,14 +1714,20 @@
             "ssd_typedInputField": true
         },
         "responseType": "obj",
+        "swaggerResponse": {},
         "responseMapping": {
             "status": 200,
             "obj": "bh.local.res",
             "send": "bh.local.res"
         },
+        "dataModelIsArray": false,
         "cookies": [],
         "inputs": 1,
         "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
         "editableListData": {
             "headers": [
                 {
@@ -1666,9 +1748,10 @@
         "x": 1150,
         "y": 2350,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_8XIwcdGdNq6b1MiS",
@@ -1687,9 +1770,10 @@
                 "sd_fTktJ4U44vKuA0JR"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_fTktJ4U44vKuA0JR",
@@ -1714,14 +1798,20 @@
             "ssd_typedInputField": true
         },
         "responseType": "txt",
+        "swaggerResponse": {},
         "responseMapping": {
             "status": 302,
             "txt": "'redirecting'",
             "send": "'redirecting'"
         },
+        "dataModelIsArray": false,
         "cookies": [],
         "inputs": 1,
         "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
         "editableListData": {
             "headers": []
         },
@@ -1735,9 +1825,10 @@
         "x": 1150,
         "y": 2650,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_tqfCMfY5oWPUUKg7",
@@ -1752,6 +1843,13 @@
         "dataMapping": "",
         "functionName": "sd_tqfCMfY5oWPUUKg7",
         "category": "HTTP",
+        "x": 650,
+        "y": 2500,
+        "wires": [
+            [
+                "sd_LvH7gNWY3HlmCmTF"
+            ]
+        ],
         "__ssdTypeInputs__": {
             "resultMapping": {
                 "type": "bh.input",
@@ -1762,16 +1860,10 @@
                 "value": ""
             }
         },
-        "x": 650,
-        "y": 2500,
-        "wires": [
-            [
-                "sd_LvH7gNWY3HlmCmTF"
-            ]
-        ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_HESKK0JWQboibh5m",
@@ -1790,6 +1882,7 @@
                 "sd_a5LJsY8fti8n8oYu"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": true,
         "serviceName": "ids",
         "functionName": "sd_HESKK0JWQboibh5m"
@@ -1807,6 +1900,13 @@
         "dataMapping": "",
         "functionName": "sd_3o89xKJ33tetvGQV",
         "category": "HTTP",
+        "x": 386,
+        "y": 3178.78125,
+        "wires": [
+            [
+                "sd_48q080z4rHii9F7B"
+            ]
+        ],
         "__ssdTypeInputs__": {
             "resultMapping": {
                 "type": "bh.local",
@@ -1817,16 +1917,10 @@
                 "value": ""
             }
         },
-        "x": 386,
-        "y": 3178.78125,
-        "wires": [
-            [
-                "sd_48q080z4rHii9F7B"
-            ]
-        ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_3nht2ai9jpVsdycb",
@@ -1861,9 +1955,10 @@
                 "sd_dJthlPAnoFscvI5a"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_dJthlPAnoFscvI5a",
@@ -1901,9 +1996,10 @@
                 "sd_ftOSBKo1yOvINf79"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_lg2arnoF68DEZIRG",
@@ -1924,14 +2020,20 @@
             "ssd_typedInputField": true
         },
         "responseType": "obj",
+        "swaggerResponse": {},
         "responseMapping": {
             "status": 403,
             "obj": "bh.local.res",
             "send": "bh.local.res"
         },
+        "dataModelIsArray": false,
         "cookies": [],
         "inputs": 1,
         "outputs": 0,
+        "erd": "",
+        "entity": "",
+        "entityId": "",
+        "ref": "",
         "editableListData": {
             "headers": []
         },
@@ -1945,9 +2047,10 @@
         "x": 1205,
         "y": 3366.78125,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_ijAUNfaVTeu6fv7x",
@@ -1966,9 +2069,10 @@
                 "sd_lg2arnoF68DEZIRG"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_ftOSBKo1yOvINf79",
@@ -1987,9 +2091,10 @@
                 "sd_lg2arnoF68DEZIRG"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_jlLF3b1KNGaHSUoz",
@@ -2024,9 +2129,10 @@
                 "sd_pGkoUOerwswYnivO"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_vFiut0bXr4OECPM1",
@@ -2067,9 +2173,10 @@
         "x": 1484,
         "y": 2956.703125,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_lbKp0Hm73dOX9P1q",
@@ -2088,9 +2195,10 @@
                 "sd_lg2arnoF68DEZIRG"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_A0KtjJLuDyBXmnAK",
@@ -2100,6 +2208,7 @@
         "nodeType": "flow",
         "name": "Call handleTokenExpiry",
         "outputs": 1,
+        "isValidNode": true,
         "noerr": 0,
         "service": {
             "serviceId": "sd_demSUkhSSxbMWT5g",
@@ -2151,9 +2260,10 @@
                 "sd_jlLF3b1KNGaHSUoz"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_a5LJsY8fti8n8oYu",
@@ -2172,9 +2282,10 @@
                 "sd_3o89xKJ33tetvGQV"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_48q080z4rHii9F7B",
@@ -2193,9 +2304,10 @@
                 "sd_3nht2ai9jpVsdycb"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_MoIIJFRH8iyrQ5gE",
@@ -2210,6 +2322,13 @@
         "dataMapping": "",
         "functionName": "sd_MoIIJFRH8iyrQ5gE",
         "category": "HTTP",
+        "x": 887,
+        "y": 3093.78125,
+        "wires": [
+            [
+                "sd_lbKp0Hm73dOX9P1q"
+            ]
+        ],
         "__ssdTypeInputs__": {
             "resultMapping": {
                 "type": "bh.input",
@@ -2220,16 +2339,10 @@
                 "value": ""
             }
         },
-        "x": 887,
-        "y": 3093.78125,
-        "wires": [
-            [
-                "sd_lbKp0Hm73dOX9P1q"
-            ]
-        ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_pGkoUOerwswYnivO",
@@ -2264,9 +2377,10 @@
                 "sd_vFiut0bXr4OECPM1"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_X8lnauvFddJ16EwA",
@@ -2281,6 +2395,13 @@
         "dataMapping": "bh.local.newSession",
         "functionName": "sd_X8lnauvFddJ16EwA",
         "category": "HTTP",
+        "x": 1331,
+        "y": 2827.78125,
+        "wires": [
+            [
+                "sd_vFiut0bXr4OECPM1"
+            ]
+        ],
         "__ssdTypeInputs__": {
             "resultMapping": {
                 "type": "bh.local",
@@ -2291,16 +2412,10 @@
                 "value": "newSession"
             }
         },
-        "x": 1331,
-        "y": 2827.78125,
-        "wires": [
-            [
-                "sd_vFiut0bXr4OECPM1"
-            ]
-        ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_9DKTwhOnA8pIWyXA",
@@ -2319,9 +2434,10 @@
                 "sd_X8lnauvFddJ16EwA"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     },
     {
         "id": "sd_sEJa7skTQLC1Cl1n",
@@ -2335,6 +2451,7 @@
         "x": 685,
         "y": 58.78125,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": true,
         "serviceName": "ids",
         "functionName": "sd_sEJa7skTQLC1Cl1n"
@@ -2351,6 +2468,7 @@
         "x": 664,
         "y": 590.78125,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": true,
         "serviceName": "ids",
         "functionName": "sd_A9d0EYwplceA9ZTb"
@@ -2367,6 +2485,7 @@
         "x": 685,
         "y": 897.2265625,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": true,
         "serviceName": "ids",
         "functionName": "sd_VmyusJ7qL7HSNHZx"
@@ -2383,6 +2502,7 @@
         "x": 720.0000114440918,
         "y": 1527.226583480835,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": true,
         "serviceName": "ids",
         "functionName": "sd_DT3l0Oy2nPhPPfsG"
@@ -2399,6 +2519,7 @@
         "x": 651.2500095367432,
         "y": 1947.2265892028809,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": true,
         "serviceName": "ids",
         "functionName": "sd_tSoUiAvz6kGtmlNA"
@@ -2415,6 +2536,7 @@
         "x": 177.50000381469727,
         "y": 1310.9765815734863,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": true,
         "serviceName": "ids",
         "functionName": "sd_lCFMJ4RW7kYy9HA4"
@@ -2431,6 +2553,7 @@
         "x": 813.75,
         "y": 2805.9765625,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": true,
         "serviceName": "ids",
         "functionName": "sd_IfG9vqGI10lyOGQX"
@@ -2447,6 +2570,7 @@
         "x": 581.25,
         "y": 2238.4765625,
         "wires": [],
+        "__n_excludedFromValidation__": {},
         "generateNext": true,
         "serviceName": "ids",
         "functionName": "sd_jB0Nejp45vnklYQI"
@@ -2473,6 +2597,7 @@
                 "sd_lbKp0Hm73dOX9P1q"
             ]
         ],
+        "__n_excludedFromValidation__": {},
         "generateNext": true,
         "serviceName": "ids"
     },
@@ -2489,6 +2614,13 @@
         "dataMapping": "bh.local.sessionData.data",
         "functionName": "sd_dCWCI7Lqpk6tk1KJ",
         "category": "HTTP",
+        "x": 1205,
+        "y": 1560,
+        "wires": [
+            [
+                "sd_RwsNCMI8tNTehS2g"
+            ]
+        ],
         "__ssdTypeInputs__": {
             "resultMapping": {
                 "type": "bh.local",
@@ -2501,15 +2633,9 @@
                 "constant": false
             }
         },
-        "x": 1205,
-        "y": 1560,
-        "wires": [
-            [
-                "sd_RwsNCMI8tNTehS2g"
-            ]
-        ],
+        "__n_excludedFromValidation__": {},
         "generateNext": false,
-        "generated": true,
-        "serviceName": "ids"
+        "serviceName": "ids",
+        "generated": true
     }
 ]

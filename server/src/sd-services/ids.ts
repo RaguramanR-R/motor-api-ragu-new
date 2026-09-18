@@ -382,6 +382,15 @@ export class ids {
       let requestObject = bh.web.req;
       if (requestObject.session) {
         requestObject.session.data = bh.local.reqParams;
+        console.log("========== IDS LOGIN SESSION DEBUG ==========");
+
+console.log("Session ID:", requestObject.sessionID);
+console.log("Session data:", requestObject.session.data);
+
+console.log("State:", requestObject.session.data?.state);
+console.log("Nonce:", requestObject.session.data?.nonce);
+
+console.log("============================================");
       }
       this.tracerService.sendData(spanInst, bh);
       bh = await this.sd_4wKeyu2a5aFYYgT4(bh, parentSpanInst);
